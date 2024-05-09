@@ -49,21 +49,23 @@ export const departments = [
 ];
 
 export default function EmployeesPage({
-  params,
+  searchParams,
 }: {
-  params: {
+  searchParams: {
     department: DepartmentName | undefined;
   };
 }) {
-  debugger;
+  // Need to figure out where the queryParams live when passed to a Link
 
-  const [departmentFilter] = useState<DepartmentName | undefined>();
+  console.log(arguments[0]);
 
-  const activeFilter = departmentFilter || params.department;
+  const activeFilter = searchParams.department;
 
-  const employeesToShow = departmentFilter
+  const employeesToShow = activeFilter
     ? employees.filter((employee) => employee.department === activeFilter)
     : employees;
+
+  console.log(employeesToShow);
 
   return (
     <>
@@ -71,6 +73,8 @@ export default function EmployeesPage({
       <h1>Employees</h1>
 
       {/* Filters */}
+      {/* TODO: use `usePathname` to determine if link is active */}
+
       <div className="flex gap-2">
         <ul className="flex gap-1">
           <li>
@@ -79,13 +83,12 @@ export default function EmployeesPage({
           {departments.map((department) => (
             <li key={department.id}>
               {/* TODO: make these Links that update the param */}
+
               <Link
                 href={{
                   pathname: "/employees",
                   query: {
-                    department: department.name
-                      .toLowerCase()
-                      .replace(/\s+/g, "-"),
+                    department: encodeURIComponent(department.name),
                   },
                 }}
               >

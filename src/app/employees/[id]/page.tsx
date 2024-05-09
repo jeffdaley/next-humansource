@@ -16,7 +16,6 @@ export default function EmployeesEmployeePage({
     id: string;
   };
 }) {
-  debugger;
   return (
     <>
       <h1>{params.id}: someName</h1>
