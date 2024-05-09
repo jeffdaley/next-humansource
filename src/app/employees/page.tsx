@@ -41,7 +41,10 @@ export default function EmployeesPage({
         <ul className="flex gap-1">
           <li>
             <Link
-              className={activeFilter === undefined ? "text-yellow-400" : ""}
+              className={
+                "py-8 block " +
+                (activeFilter === undefined ? "text-yellow-400" : "")
+              }
               href={{
                 pathname: "/employees",
                 query: undefined,
@@ -54,7 +57,8 @@ export default function EmployeesPage({
             <li key={department.id}>
               <Link
                 className={
-                  activeFilter === department.name ? "text-yellow-400" : ""
+                  "py-8 block " +
+                  (activeFilter === department.name ? "text-yellow-400" : "")
                 }
                 href={{
                   pathname: "/employees",
@@ -77,7 +81,8 @@ export default function EmployeesPage({
                 : {},
           }}
         >
-          Sort
+          {/* TODO: Improve label */}
+          Sorted by recently hired
         </Link>
       </div>
 

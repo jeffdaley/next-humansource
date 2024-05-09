@@ -43,9 +43,9 @@ export default function EmployeesEmployeePage({
     <>
       {/* TODO: Make editable if privileged  */}
       <Avatar employee={employee} />
-      <h1>{employee.name}</h1>
-      <p>{employee.email}</p>
-      <hr></hr>
+      <h1 className="py-12">{employee.name}</h1>
+      <p className="py-12">{employee.email}</p>
+      <hr className="py-80"></hr>
       <Link
         href={{
           pathname: "/employees",
@@ -53,11 +53,12 @@ export default function EmployeesEmployeePage({
             department: employee.department,
           },
         }}
+        className="py-12"
       >
         {employee.department}
       </Link>
-      <p>{employee.startDate}</p>
-      <p>Salary: {employee.annualSalary} per year</p>
+      <p className="py-12">{employee.startDate}</p>
+      <p className="py-12">Salary: {employee.annualSalary} per year</p>
     </>
   );
 }
