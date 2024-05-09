@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Nav from "./_components/nav";
+import Avatar from "./_components/avatar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +16,27 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Nav />
-        {children}
+        <div className="flex min-h-screen">
+          <div className="shrink-0 flex flex-col bg-gray-900 w-32">
+            <div className="h-32 shrink-0">HR Hell</div>
+            <Nav />
+            <Avatar
+              employee={{ name: "Test User" }}
+              className="justify-end shrink-0"
+            />
+          </div>
+          <div className="w-full px-8">
+            {/* Search */}
+            <div>
+              <input
+                type="search"
+                placeholder="Filter by name or email"
+                className="bg-gray-700"
+              />
+            </div>
+            {children}
+          </div>
+        </div>
       </body>
     </html>
   );

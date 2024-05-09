@@ -1,5 +1,6 @@
 "use client";
 
+import Avatar from "@/app/_components/avatar";
 import { EMPLOYEES } from "@/app/lib/data";
 import { DepartmentName } from "@/app/types/employees";
 import Link from "next/link";
@@ -8,11 +9,12 @@ export interface Employee {
   id: string;
   name: string;
   email: string;
+  imageURL?: string;
   department?: DepartmentName;
-  reportsTo?: string;
+  reportsDirectlyTo?: string;
   directReports?: string[];
   annualSalary: number;
-  startDate: string;
+  startDate: number;
 }
 
 export default function EmployeesEmployeePage({
@@ -22,8 +24,13 @@ export default function EmployeesEmployeePage({
     id: string;
   };
 }) {
+  /**
+   * The employee record, found by its id.
+   * TODO: Implement with Next.js fetching, caching, etc.
+   */
   const employee = EMPLOYEES.find((e) => e.id === params.id);
 
+  // TODO: Design "not found" state
   if (!employee) {
     return (
       <div>
@@ -34,9 +41,11 @@ export default function EmployeesEmployeePage({
 
   return (
     <>
-      <h1>
-        {employee.id}: {employee.name}
-      </h1>
+      {/* TODO: Make editable if privileged  */}
+      <Avatar employee={employee} />
+      <h1>{employee.name}</h1>
+      <p>{employee.email}</p>
+      <hr></hr>
       <Link
         href={{
           pathname: "/employees",
@@ -47,7 +56,6 @@ export default function EmployeesEmployeePage({
       >
         {employee.department}
       </Link>
-      <p>{employee.email}</p>
       <p>{employee.startDate}</p>
       <p>Salary: {employee.annualSalary} per year</p>
     </>

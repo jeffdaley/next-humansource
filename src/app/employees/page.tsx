@@ -1,29 +1,43 @@
 "use client";
 
 import Link from "next/link";
-import Action from "../_components/action";
 import { DEPARTMENTS, EMPLOYEES } from "../lib/data";
 import { DepartmentName } from "../types/employees";
+import Avatar from "../_components/avatar";
+import { SortOrder } from "../types/sorting";
 
 export default function EmployeesPage({
   searchParams,
 }: {
   searchParams: {
     department: DepartmentName | undefined;
+    sort?: SortOrder;
   };
 }) {
   const activeFilter = searchParams.department;
-  const employeesToShow = activeFilter
+
+  const employees = activeFilter
     ? EMPLOYEES.filter((employee) => employee.department === activeFilter)
     : EMPLOYEES;
 
+  const sort = searchParams.sort || SortOrder.Descending;
+
+  const sortedEmployees = employees.sort((a, b) => {
+    switch (sort) {
+      case SortOrder.Descending:
+        return b.startDate - a.startDate;
+      case SortOrder.Ascending:
+        return a.startDate - b.startDate;
+    }
+  });
+
   return (
     <>
-      <Action className="text-red-400">New Employee</Action>
       <h1>Employees</h1>
+      <hr></hr>
 
-      {/* Filters */}
-      <div className="flex gap-2">
+      <div className="flex justify-between">
+        {/* Filters */}
         <ul className="flex gap-1">
           <li>
             <Link
@@ -54,16 +68,29 @@ export default function EmployeesPage({
             </li>
           ))}
         </ul>
+        <Link
+          href={{
+            pathname: "/employees",
+            query:
+              sort === SortOrder.Descending
+                ? { sort: SortOrder.Ascending }
+                : {},
+          }}
+        >
+          Sort
+        </Link>
       </div>
 
       {/* Employees */}
       <ol>
-        {employeesToShow.map((employee) => (
+        {sortedEmployees.map((employee) => (
           <li key={employee.id} className="relative">
             <Link href={`/employees/${employee.id}`}>
+              <Avatar employee={employee} />
               <h4>{employee.name}</h4>
               <p>
-                {employee.email} | {employee.department}
+                {employee.email} | {employee.department} | Started{" "}
+                {employee.startDate}
               </p>
             </Link>
             {/* Absolutely positioned overflow menu */}
