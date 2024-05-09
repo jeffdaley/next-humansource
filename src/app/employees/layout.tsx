@@ -1,4 +1,4 @@
-import { departments as DEPARTMENTS, employees as EMPLOYEES } from "./page";
+import { DEPARTMENTS, EMPLOYEES } from "../lib/data";
 
 // TODO: move elsewhere?
 async function fetchEmployees() {

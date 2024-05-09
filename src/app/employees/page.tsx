@@ -2,51 +2,8 @@
 
 import Link from "next/link";
 import Action from "../_components/action";
-import { Employee } from "./[id]/page";
-import { useState } from "react";
-
-export enum DepartmentName {
-  Engineering = "Engineering",
-  Marketing = "Marketing",
-  Sales = "Sales",
-}
-
-// TODO: Move to a data folder?
-export const employees: Employee[] = [
-  {
-    id: "1",
-    name: "Foo Bar",
-    email: "foo@bar.com",
-    department: DepartmentName.Engineering,
-  },
-  {
-    id: "2",
-    name: "Baz Baz",
-    email: "baz@baz.com",
-    department: DepartmentName.Marketing,
-  },
-  {
-    id: "3",
-    name: "Qux Qux",
-    email: "qux@qux.com",
-    department: DepartmentName.Sales,
-  },
-];
-
-export const departments = [
-  {
-    id: "1",
-    name: DepartmentName.Engineering,
-  },
-  {
-    id: "2",
-    name: DepartmentName.Marketing,
-  },
-  {
-    id: "3",
-    name: DepartmentName.Sales,
-  },
-];
+import { DEPARTMENTS, EMPLOYEES } from "../lib/data";
+import { DepartmentName } from "../types/employees";
 
 export default function EmployeesPage({
   searchParams,
@@ -55,17 +12,10 @@ export default function EmployeesPage({
     department: DepartmentName | undefined;
   };
 }) {
-  // Need to figure out where the queryParams live when passed to a Link
-
-  console.log(arguments[0]);
-
   const activeFilter = searchParams.department;
-
   const employeesToShow = activeFilter
-    ? employees.filter((employee) => employee.department === activeFilter)
-    : employees;
-
-  console.log(employeesToShow);
+    ? EMPLOYEES.filter((employee) => employee.department === activeFilter)
+    : EMPLOYEES;
 
   return (
     <>
@@ -73,18 +23,25 @@ export default function EmployeesPage({
       <h1>Employees</h1>
 
       {/* Filters */}
-      {/* TODO: use `usePathname` to determine if link is active */}
-
       <div className="flex gap-2">
         <ul className="flex gap-1">
           <li>
-            <Link href="/employees">All</Link>
+            <Link
+              className={activeFilter === undefined ? "text-yellow-400" : ""}
+              href={{
+                pathname: "/employees",
+                query: undefined,
+              }}
+            >
+              All
+            </Link>
           </li>
-          {departments.map((department) => (
+          {DEPARTMENTS.map((department) => (
             <li key={department.id}>
-              {/* TODO: make these Links that update the param */}
-
               <Link
+                className={
+                  activeFilter === department.name ? "text-yellow-400" : ""
+                }
                 href={{
                   pathname: "/employees",
                   query: {
