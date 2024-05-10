@@ -35,9 +35,8 @@ export default function EmployeesPage({
 
   return (
     <>
+      <h1 className="text-[120px] mb-10">Employees</h1>
       <div className="flex">
-        {/* <h1 className="mb-6">Employees</h1> */}
-
         <div className="flex justify-between">
           {/* Filters */}
           <ul className="flex gap-1">
