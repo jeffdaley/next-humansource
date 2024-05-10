@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Nav from "./_components/nav";
-import Avatar from "./_components/avatar";
-import Action from "./_components/action";
 
 export const metadata: Metadata = {
   title: "HR Hell",

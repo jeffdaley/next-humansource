@@ -11,6 +11,8 @@ export interface Employee {
   email: string;
   imageURL?: string;
   department?: DepartmentName;
+  pronunciation?: string;
+  pronouns?: string;
   jobTitle: string;
   phone: string;
   reportsDirectlyTo?: string;
@@ -46,7 +48,7 @@ export default function EmployeesEmployeePage({
       {/* TODO: Make editable if privileged  */}
       <div className="overflow-hidden">
         <Avatar employee={employee} className="w-80 h-80 float-right" />
-        <h1 className="text-[120px]">{employee.name}</h1>
+        <h1 className="text-[120px] mb-10">{employee.name}</h1>
         <p>{employee.jobTitle}</p>
         <p>{employee.email}</p>
         <p>{employee.phone}</p>

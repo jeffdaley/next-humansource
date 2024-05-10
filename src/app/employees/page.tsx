@@ -10,15 +10,17 @@ export default function EmployeesPage({
   searchParams,
 }: {
   searchParams: {
-    department: DepartmentName | undefined;
+    department?: DepartmentName;
     sort?: SortOrder;
   };
 }) {
-  const activeFilter = searchParams.department;
+  // FIXME: Don't ever want the "All" param showing in the URL
+  const activeFilter = searchParams.department || DepartmentName.All;
 
-  const employees = activeFilter
-    ? EMPLOYEES.filter((employee) => employee.department === activeFilter)
-    : EMPLOYEES;
+  const employees =
+    activeFilter === DepartmentName.All
+      ? EMPLOYEES
+      : EMPLOYEES.filter((employee) => employee.department === activeFilter);
 
   const sort = searchParams.sort || SortOrder.Descending;
 
@@ -33,45 +35,32 @@ export default function EmployeesPage({
 
   return (
     <>
-      <h1>Employees</h1>
+      <div className="flex">
+        {/* <h1 className="mb-6">Employees</h1> */}
 
-      <div className="flex justify-between">
-        {/* Filters */}
-        <ul className="flex gap-1">
-          {/* TODO: Eliminate this hard-coded thing */}
-          <li>
-            <Link
-              className={
-                "py-8 px-2 block " +
-                (activeFilter === undefined ? "text-yellow-400" : "")
-              }
-              href={{
-                pathname: "/employees",
-                query: undefined,
-              }}
-            >
-              Everyone
-            </Link>
-          </li>
-          {DEPARTMENTS.map((department) => (
-            <li key={department.id}>
-              <Link
-                className={
-                  "py-8 block " +
-                  (activeFilter === department.name ? "text-yellow-400" : "")
-                }
-                href={{
-                  pathname: "/employees",
-                  query: {
-                    department: encodeURIComponent(department.name),
-                  },
-                }}
-              >
-                {department.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="flex justify-between">
+          {/* Filters */}
+          <ul className="flex gap-1">
+            {DEPARTMENTS.map((department) => (
+              <li key={department.id}>
+                <Link
+                  className={
+                    "py-2 block px-2 border border-gray-700 " +
+                    (activeFilter === department.name ? "text-yellow-400" : "")
+                  }
+                  href={{
+                    pathname: "/employees",
+                    query: {
+                      department: encodeURIComponent(department.name),
+                    },
+                  }}
+                >
+                  {department.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
         <Link
           href={{
             pathname: "/employees",

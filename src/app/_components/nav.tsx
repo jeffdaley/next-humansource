@@ -12,11 +12,6 @@ export type NavLink = {
 export default function Nav() {
   const navLinks: NavLink[] = [
     {
-      href: "/",
-      text: "Home",
-      icon: "home",
-    },
-    {
       href: "/employees",
       text: "Employees",
       icon: "people",

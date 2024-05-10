@@ -6,10 +6,11 @@ import { DepartmentName } from "../types/employees";
 export const EMPLOYEES: Employee[] = [
   {
     id: "1",
-    name: "Lucy Gao",
-    email: "lucy@tabbyml.com",
+    name: "Lauren DeBlanc",
+    pronouns: "She/Her",
+    email: "lauren@tabbyml.com",
     phone: "+1 203-666-4133",
-    jobTitle: "Janitor and Developer Advocate",
+    jobTitle: "Engineer II",
     department: DepartmentName.Engineering,
     reportsDirectlyTo: "2",
     annualSalary: 100000,
@@ -18,8 +19,8 @@ export const EMPLOYEES: Employee[] = [
   {
     id: "2",
     imageURL: "https://placehold.co/400",
-    name: "Meng Zhang",
-    email: "meng@tabbyml.com",
+    name: "Renata Southland",
+    email: "renata@tabbyml.com",
     phone: "+1 733-882-1299",
     jobTitle: "Sr. Project Manager",
     department: DepartmentName.Marketing,
@@ -32,7 +33,7 @@ export const EMPLOYEES: Employee[] = [
     imageURL: "https://placehold.co/400",
     name: "Srini Navasara",
     pronunciation: "shree-nee na-va-sa-ra",
-    email: "qux@qux.com",
+    email: "srini@tabbyml.com",
     phone: "+1 617-568-3122",
     jobTitle: "Director of Sales",
     department: DepartmentName.Sales,
@@ -42,6 +43,10 @@ export const EMPLOYEES: Employee[] = [
 ];
 
 export const DEPARTMENTS = [
+  {
+    id: "0",
+    name: DepartmentName.All,
+  },
   {
     id: "1",
     name: DepartmentName.Engineering,
