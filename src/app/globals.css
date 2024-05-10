@@ -27,11 +27,47 @@ body {
 }
 
 h1 {
-  @apply text-5xl;
+  @apply text-[8rem] leading-none mb-10 font-black tracking-tight;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .pill {
+    @apply rounded-l-full rounded-r-full;
+  }
+}
+
+.filter-button {
+  @apply border text-white border-white/20;
+
+  &.sales {
+    @apply text-yellow-200 border-yellow-200/20;
+  }
+
+  &.engineering {
+    @apply text-blue-200 border-blue-200/20;
+  }
+
+  &.marketing {
+    @apply text-red-200 border-red-200/20;
+  }
+
+  &.active {
+    @apply text-black border-transparent bg-white;
+
+    &.sales {
+      @apply bg-yellow-200;
+    }
+
+    &.engineering {
+      @apply bg-blue-200 text-black;
+    }
+
+    &.marketing {
+      @apply bg-red-200 text-black;
+    }
   }
 }

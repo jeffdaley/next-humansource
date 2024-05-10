@@ -9,7 +9,7 @@ export type NavLink = {
   icon: string;
 };
 
-export default function Nav() {
+export default function SideNav() {
   const navLinks: NavLink[] = [
     {
       href: "/",
@@ -44,21 +44,20 @@ export default function Nav() {
   };
 
   return (
-    <nav className="shrink-0 flex flex-col sticky h-screen top-0 w-24 bg-neutral-900 px-1.5 text-xs">
+    <nav className="shrink-0 flex flex-col sticky h-screen top-0 w-32 border-r border-r-neutral-800 px-1.5 text-xs">
       <div className="flex flex-col justify-start pt-1.5 h-full">
         {navLinks.map((link) => (
           <Link
             key={link.href}
             href={link.href}
-            className={
-              "grid place-items-center gap-2 px-3 py-3.5 " +
-              (linkIsActive(link.href)
-                ? "bg-neutral-800 rounded-lg"
-                : // Fixme What's the syntax for avoiding this?
-                  "")
-            }
+            className="grid place-items-center gap-2 px-3 py-3.5"
           >
-            <div className="border-2 border-neutral-700 w-14 h-14 rounded-full"></div>
+            <div
+              className={
+                "border-2 border-neutral-700 w-14 h-14 rounded-full " +
+                (linkIsActive(link.href) && "bg-neutral-700")
+              }
+            ></div>
             {link.text}
           </Link>
         ))}

@@ -22,7 +22,7 @@ export default function Avatar({
     return employee.imageURL ? (
       <Image
         // FIXME: Reference the `baseURL` directly instead of fragile `../`
-        src="../images/employee-placeholder.svg"
+        src={`/images/${employee.imageURL}`}
         alt={employee.name}
         width="1200"
         height="1200"
@@ -34,11 +34,10 @@ export default function Avatar({
 
   return (
     <div
-      className={
-        "w-20 h-20 rounded-full overflow-hidden grid place-items-center " +
-        (!employee?.imageURL ? "bg-red-200" : "")
-      }
-      {...rest}
+      className={`w-20 h-20 rounded-full overflow-hidden grid place-items-center ${
+        !employee?.imageURL && "bg-red-200"
+      } ${rest.className}`}
+      // FIXME: need a better way of concatenating classNames
     >
       <ImageOrLetter />
     </div>

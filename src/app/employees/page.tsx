@@ -5,6 +5,7 @@ import { DEPARTMENTS, EMPLOYEES } from "../lib/data";
 import { DepartmentName } from "../types/employees";
 import Avatar from "../_components/avatar";
 import { SortOrder } from "../types/sorting";
+import { parseDate } from "../_utils/date";
 
 export default function EmployeesPage({
   searchParams,
@@ -34,32 +35,29 @@ export default function EmployeesPage({
   });
 
   return (
-    <>
-      <h1 className="text-[120px] mb-10">Employees</h1>
-      <div className="flex">
-        <div className="flex justify-between">
-          {/* Filters */}
-          <ul className="flex gap-1">
-            {DEPARTMENTS.map((department) => (
-              <li key={department.id}>
-                <Link
-                  className={
-                    "py-2 block px-2 border border-gray-700 " +
-                    (activeFilter === department.name ? "text-yellow-400" : "")
-                  }
-                  href={{
-                    pathname: "/employees",
-                    query: {
-                      department: encodeURIComponent(department.name),
-                    },
-                  }}
-                >
-                  {department.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+    <div className="relative px-8 pt-5">
+      <h1>Employees</h1>
+      <div className="flex w-full justify-between">
+        {/* Filters */}
+        <ul className="flex gap-1">
+          {DEPARTMENTS.map((department) => (
+            <li key={department.id}>
+              <Link
+                className={`h-10 grid place-items-center px-6 filter-button pill ${
+                  activeFilter === department.name && "active"
+                } ${department.name.toLowerCase().replace(/ /g, "-")}`}
+                href={{
+                  pathname: "/employees",
+                  query: {
+                    department: encodeURIComponent(department.name),
+                  },
+                }}
+              >
+                {department.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
         <Link
           href={{
             pathname: "/employees",
@@ -84,12 +82,12 @@ export default function EmployeesPage({
               <h4>{employee.name}</h4>
               <p>
                 {employee.email} | {employee.department} | Started{" "}
-                {employee.startDate}
+                {parseDate(employee.startDate)}
               </p>
             </Link>
           </li>
         ))}
       </ol>
-    </>
+    </div>
   );
 }
