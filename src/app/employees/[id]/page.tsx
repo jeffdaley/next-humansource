@@ -11,6 +11,8 @@ export interface Employee {
   email: string;
   imageURL?: string;
   department?: DepartmentName;
+  jobTitle: string;
+  phone: string;
   reportsDirectlyTo?: string;
   directReports?: string[];
   annualSalary: number;
@@ -42,10 +44,13 @@ export default function EmployeesEmployeePage({
   return (
     <>
       {/* TODO: Make editable if privileged  */}
-      <Avatar employee={employee} />
-      <h1 className="py-12">{employee.name}</h1>
-      <p className="py-12">{employee.email}</p>
-      <hr className="py-80"></hr>
+      <div className="overflow-hidden">
+        <Avatar employee={employee} className="w-80 h-80 float-right" />
+        <h1 className="text-[120px]">{employee.name}</h1>
+        <p>{employee.jobTitle}</p>
+        <p>{employee.email}</p>
+        <p>{employee.phone}</p>
+      </div>
       <Link
         href={{
           pathname: "/employees",
@@ -53,11 +58,14 @@ export default function EmployeesEmployeePage({
             department: employee.department,
           },
         }}
-        className="py-12"
+        className="rounded-full px-3 py-1 bg-red-200"
       >
         {employee.department}
       </Link>
-      <p className="py-12">{employee.startDate}</p>
+      <hr className="py-80"></hr>
+      <p className="py-12">
+        Start date: {employee.startDate} (2 years, 1 month, 1 day)
+      </p>
       <p className="py-12">Salary: {employee.annualSalary} per year</p>
     </>
   );

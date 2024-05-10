@@ -1,5 +1,8 @@
 import { DEPARTMENTS, EMPLOYEES } from "../lib/data";
 
+// TODO: Add metadata to the title
+// https://nextjs.org/docs/app/building-your-application/optimizing/metadata
+
 // TODO: move elsewhere?
 async function fetchEmployees() {
   await new Promise((resolve) => setTimeout(resolve, 1000));

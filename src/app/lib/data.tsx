@@ -6,8 +6,10 @@ import { DepartmentName } from "../types/employees";
 export const EMPLOYEES: Employee[] = [
   {
     id: "1",
-    name: "Foo Bar",
-    email: "foo@bar.com",
+    name: "Lucy Gao",
+    email: "lucy@tabbyml.com",
+    phone: "+1 203-666-4133",
+    jobTitle: "Janitor and Developer Advocate",
     department: DepartmentName.Engineering,
     reportsDirectlyTo: "2",
     annualSalary: 100000,
@@ -16,8 +18,10 @@ export const EMPLOYEES: Employee[] = [
   {
     id: "2",
     imageURL: "https://placehold.co/400",
-    name: "Baz Baz",
-    email: "baz@baz.com",
+    name: "Meng Zhang",
+    email: "meng@tabbyml.com",
+    phone: "+1 733-882-1299",
+    jobTitle: "Sr. Project Manager",
     department: DepartmentName.Marketing,
     directReports: ["1"],
     annualSalary: 100000,
@@ -26,8 +30,11 @@ export const EMPLOYEES: Employee[] = [
   {
     id: "3",
     imageURL: "https://placehold.co/400",
-    name: "Qux Qux",
+    name: "Srini Navasara",
+    pronunciation: "shree-nee na-va-sa-ra",
     email: "qux@qux.com",
+    phone: "+1 617-568-3122",
+    jobTitle: "Director of Sales",
     department: DepartmentName.Sales,
     annualSalary: 100000,
     startDate: 2000000000,

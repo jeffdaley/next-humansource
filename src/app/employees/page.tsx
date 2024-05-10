@@ -34,15 +34,15 @@ export default function EmployeesPage({
   return (
     <>
       <h1>Employees</h1>
-      <hr></hr>
 
       <div className="flex justify-between">
         {/* Filters */}
         <ul className="flex gap-1">
+          {/* TODO: Eliminate this hard-coded thing */}
           <li>
             <Link
               className={
-                "py-8 block " +
+                "py-8 px-2 block " +
                 (activeFilter === undefined ? "text-yellow-400" : "")
               }
               href={{
@@ -50,7 +50,7 @@ export default function EmployeesPage({
                 query: undefined,
               }}
             >
-              All
+              Everyone
             </Link>
           </li>
           {DEPARTMENTS.map((department) => (
@@ -75,10 +75,11 @@ export default function EmployeesPage({
         <Link
           href={{
             pathname: "/employees",
-            query:
-              sort === SortOrder.Descending
-                ? { sort: SortOrder.Ascending }
-                : {},
+            query: {
+              ...searchParams,
+              sort:
+                sort === SortOrder.Descending ? SortOrder.Ascending : undefined,
+            },
           }}
         >
           {/* TODO: Improve label */}
@@ -98,10 +99,6 @@ export default function EmployeesPage({
                 {employee.startDate}
               </p>
             </Link>
-            {/* Absolutely positioned overflow menu */}
-            <div className="bg-red-400 absolute right-0 top-0">
-              Overflow menu
-            </div>
           </li>
         ))}
       </ol>
