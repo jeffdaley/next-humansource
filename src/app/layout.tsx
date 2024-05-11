@@ -1,22 +1,17 @@
-import { Space_Grotesk, Chakra_Petch } from "next/font/google";
+import { Outfit } from "next/font/google";
 
 import type { Metadata } from "next";
 import "./globals.css";
-import SideNav from "./_components/side-nav";
-import TopNav from "./_components/top-nav";
+import RouteNav from "./_components/route-nav";
+import UtilityNav from "./_components/utility-nav";
 
 export const metadata: Metadata = {
   title: "HumanSource | TabbyML",
   description: "Burning HR questions answered.",
 };
 
-const spaceGrotesk = Space_Grotesk({
+const font = Outfit({
   subsets: ["latin"],
-});
-
-const chakraPetch = Chakra_Petch({
-  subsets: ["latin"],
-  weight: "400",
 });
 
 export default function RootLayout({
@@ -25,13 +20,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.className}`}>
+    <html lang="en" className={`${font.className}`}>
       <body>
         <div className="flex">
-          <SideNav />
+          <RouteNav />
           {/* Top-level global nav */}
           <div className="w-full">
-            <TopNav />
+            <UtilityNav />
             <div className="w-full">{children}</div>
           </div>
         </div>

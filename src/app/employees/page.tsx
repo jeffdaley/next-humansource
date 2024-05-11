@@ -35,7 +35,7 @@ export default function EmployeesPage({
   });
 
   return (
-    <div className="relative px-8 pt-5">
+    <div className="relative px-8 pt-7">
       <h1>Employees</h1>
       <div className="flex w-full justify-between">
         {/* Filters */}
@@ -43,7 +43,7 @@ export default function EmployeesPage({
           {DEPARTMENTS.map((department) => (
             <li key={department.id}>
               <Link
-                className={`h-10 grid place-items-center px-6 filter-button pill ${
+                className={`h-10 grid place-items-center px-6 filter-button ${
                   activeFilter === department.name && "active"
                 } ${department.name.toLowerCase().replace(/ /g, "-")}`}
                 href={{
@@ -81,7 +81,7 @@ export default function EmployeesPage({
               <Avatar employee={employee} />
               <h4>{employee.name}</h4>
               <p>
-                {employee.email} | {employee.department} | Started{" "}
+                {employee.workEmail} | {employee.department} | Started{" "}
                 {parseDate(employee.startDate)}
               </p>
             </Link>

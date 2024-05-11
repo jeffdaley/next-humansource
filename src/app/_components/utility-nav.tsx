@@ -3,7 +3,7 @@
 import { EMPLOYEES, USER_ID } from "../lib/data";
 import Avatar from "./avatar";
 
-export default function TopNav() {
+export default function UtilityNav() {
   const testUser = EMPLOYEES.find((e) => e.id === USER_ID);
 
   return (

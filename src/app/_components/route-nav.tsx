@@ -9,7 +9,7 @@ export type NavLink = {
   icon: string;
 };
 
-export default function SideNav() {
+export default function RouteNav() {
   const navLinks: NavLink[] = [
     {
       href: "/",
