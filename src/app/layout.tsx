@@ -2,8 +2,7 @@ import { Outfit } from "next/font/google";
 
 import type { Metadata } from "next";
 import "./globals.css";
-import RouteNav from "./_components/route-nav";
-import UtilityNav from "./_components/utility-nav";
+import AppContainer from "./_components/app-container";
 
 export const metadata: Metadata = {
   title: "HumanSource | TabbyML",
@@ -22,14 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${font.className}`}>
       <body>
-        <div className="flex">
-          <RouteNav />
-          {/* Top-level global nav */}
-          <div className="w-full">
-            <UtilityNav />
-            <div className="w-full">{children}</div>
-          </div>
-        </div>
+        <AppContainer>{children}</AppContainer>
       </body>
     </html>
   );

@@ -3,11 +3,19 @@
 import { EMPLOYEES, USER_ID } from "../lib/data";
 import Avatar from "./avatar";
 
-export default function UtilityNav() {
+interface UtilityNavArgs {
+  didScroll: boolean;
+}
+
+export default function UtilityNav(args: UtilityNavArgs) {
   const testUser = EMPLOYEES.find((e) => e.id === USER_ID);
 
   return (
-    <div className="sticky z-10 top-0 flex w-full px-8 items-center py-5 justify-between ">
+    <div
+      className={`sticky z-10 top-0 flex w-full px-8 items-center py-5 justify-between ${
+        args.didScroll && "bg-black/95"
+      }`}
+    >
       <div className="shrink-0 flex gap-1 text-center">
         <div className="w-6 h-6 bg-white rounded-full" />
         HumanSource
