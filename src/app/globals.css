@@ -3,17 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
 }
 
 body {
@@ -27,7 +19,7 @@ body {
 }
 
 h1 {
-  @apply text-[8rem] leading-none mb-6 font-black tracking-tight;
+  @apply mb-6 text-[8rem] font-black leading-none tracking-tight;
 }
 
 @layer utilities {
@@ -41,22 +33,22 @@ h1 {
 }
 
 .filter-button {
-  @apply border text-white border-white/20;
+  @apply border border-white/20 text-white;
 
   &.sales {
-    @apply text-yellow-200 border-yellow-200/20;
+    @apply border-yellow-200/20 text-yellow-200;
   }
 
   &.engineering {
-    @apply text-blue-200 border-blue-200/20;
+    @apply border-blue-200/20 text-blue-200;
   }
 
   &.marketing {
-    @apply text-red-200 border-red-200/20;
+    @apply border-red-200/20 text-red-200;
   }
 
   &.active {
-    @apply text-black border-transparent bg-white;
+    @apply border-transparent bg-white text-black;
 
     &.sales {
       @apply bg-yellow-200;

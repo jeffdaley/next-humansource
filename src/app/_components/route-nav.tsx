@@ -44,8 +44,8 @@ export default function RouteNav() {
   };
 
   return (
-    <nav className="shrink-0 flex flex-col sticky h-screen top-0 w-32 border-r border-r-neutral-800 px-1.5 text-xs">
-      <div className="flex flex-col justify-start pt-1.5 h-full">
+    <nav className="sticky top-0 flex h-screen w-32 shrink-0 flex-col border-r border-r-neutral-800 px-1.5 text-xs">
+      <div className="flex h-full flex-col justify-start pt-1.5">
         {navLinks.map((link) => (
           <Link
             key={link.href}
@@ -54,7 +54,7 @@ export default function RouteNav() {
           >
             <div
               className={
-                "border-2 border-neutral-700 w-14 h-14 rounded-full " +
+                "h-14 w-14 rounded-full border-2 border-neutral-700 " +
                 (linkIsActive(link.href) && "bg-neutral-700")
               }
             ></div>

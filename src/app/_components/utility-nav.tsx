@@ -13,12 +13,12 @@ export default function UtilityNav(args: UtilityNavArgs) {
 
   return (
     <div
-      className={`sticky z-10 top-0 flex w-full px-8 items-center py-5 justify-between ${
+      className={`sticky top-0 z-10 flex w-full items-center justify-between px-8 py-5 ${
         args.didScroll && "bg-black/95"
       }`}
     >
-      <div className="shrink-0 flex gap-1 text-center">
-        <div className="w-6 h-6 bg-white rounded-full" />
+      <div className="flex shrink-0 gap-1 text-center">
+        <div className="h-6 w-6 rounded-full bg-white" />
         HumanSource
         <div className="text-gray-500">| TabbyML</div>
       </div>
@@ -27,17 +27,17 @@ export default function UtilityNav(args: UtilityNavArgs) {
           <input
             type="search"
             placeholder="Find people, benefits, policies..."
-            className="w-full h-10  bg-neutral-800 placeholder-neutral-500 pl-11 pr-3 pill"
+            className="pill h-10  w-full bg-neutral-800 pl-11 pr-3 placeholder-neutral-500"
           />
           {/* Search icon */}
-          <div className="absolute pointer-events-none left-3.5 top-1/2 -translate-y-1/2">
+          <div className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2">
             🔍
           </div>
         </div>
         <Link href={`/employees/${USER_ID}`}>
           <Avatar
             employee={testUser}
-            className="justify-end shrink-0 !w-10 !h-10"
+            className="h-10 w-10 shrink-0 justify-end overflow-hidden rounded-full"
           />
         </Link>
       </div>

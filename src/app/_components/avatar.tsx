@@ -34,9 +34,7 @@ export default function Avatar({
 
   return (
     <div
-      className={`w-20 h-20 rounded-full overflow-hidden grid place-items-center ${
-        !employee?.imageURL && "bg-red-200"
-      } ${rest.className}`}
+      className={`${!employee?.imageURL && "bg-red-200"} ${rest.className}`}
       // FIXME: need a better way of concatenating classNames
     >
       <ImageOrLetter />

@@ -16,7 +16,11 @@ export default function AppContainer({
       setDidScroll(window.scrollY > 0);
     };
 
+    // Capture initial scroll position
+    handleScroll();
+
     window.addEventListener("scroll", handleScroll);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };

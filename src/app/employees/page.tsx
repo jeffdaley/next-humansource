@@ -6,6 +6,7 @@ import { DepartmentName } from "../types/employees";
 import Avatar from "../_components/avatar";
 import { SortOrder } from "../types/sorting";
 import { parseDate } from "../_utils/date";
+import { Headline } from "../_components/headline";
 
 export default function EmployeesPage({
   searchParams,
@@ -35,15 +36,15 @@ export default function EmployeesPage({
   });
 
   return (
-    <div className="relative px-8 pt-7">
-      <h1>Employees</h1>
+    <div className="relative px-8 pt-12">
+      <Headline>Employees</Headline>
       <div className="flex w-full justify-between">
         {/* Filters */}
-        <ul className="flex gap-1">
+        <ul className="mb-12 flex gap-1">
           {DEPARTMENTS.map((department) => (
             <li key={department.id}>
               <Link
-                className={`h-10 grid place-items-center px-6 filter-button ${
+                className={`filter-button grid h-10 place-items-center px-6 ${
                   activeFilter === department.name && "active"
                 } ${department.name.toLowerCase().replace(/ /g, "-")}`}
                 href={{
@@ -77,13 +78,15 @@ export default function EmployeesPage({
       <ol>
         {sortedEmployees.map((employee) => (
           <li key={employee.id} className="relative">
-            <Link href={`/employees/${employee.id}`}>
-              <Avatar employee={employee} />
-              <h4>{employee.name}</h4>
-              <p>
-                {employee.workEmail} | {employee.department} | Started{" "}
-                {parseDate(employee.startDate)}
-              </p>
+            <Link href={`/employees/${employee.id}`} className="flex">
+              <Avatar employee={employee} className="h-20 w-20" />
+              <div>
+                <h4 className="text-3xl font-bold">{employee.name}</h4>
+                <p>
+                  {employee.workEmail} | {employee.department} | Started{" "}
+                  {parseDate(employee.startDate)}
+                </p>
+              </div>
             </Link>
           </li>
         ))}

@@ -10,7 +10,7 @@ interface EmployeesEmployeePersonalInformationArgs {
 }
 
 export default function EmployeesEmployeePersonalInformation(
-  args: EmployeesEmployeePersonalInformationArgs
+  args: EmployeesEmployeePersonalInformationArgs,
 ) {
   const { street, city, state, zipCode, country } = args.employee.address;
   const { phone, personalEmail } = args.employee;
@@ -69,7 +69,7 @@ export default function EmployeesEmployeePersonalInformation(
           <form onSubmit={onSave}>
             <label>Personal email</label>
             <input
-              className="w-full bg-neutral-800 mb-10"
+              className="mb-10 w-full bg-neutral-800"
               type="email"
               value={newPersonalEmail ?? personalEmail}
               onChange={(e) => {
@@ -79,7 +79,7 @@ export default function EmployeesEmployeePersonalInformation(
 
             <label>Phone</label>
             <input
-              className="w-full bg-neutral-800 mb-10"
+              className="mb-10 w-full bg-neutral-800"
               type="text"
               value={newPhone ?? phone}
               onChange={(e) => {
@@ -88,7 +88,7 @@ export default function EmployeesEmployeePersonalInformation(
             />
             <label>Street</label>
             <input
-              className="w-full bg-neutral-800 mb-10"
+              className="mb-10 w-full bg-neutral-800"
               type="text"
               value={newStreet ?? street}
               onChange={(e) => {
@@ -98,7 +98,7 @@ export default function EmployeesEmployeePersonalInformation(
 
             <label>City</label>
             <input
-              className="w-full bg-neutral-800 mb-10"
+              className="mb-10 w-full bg-neutral-800"
               type="text"
               value={newCity ?? city}
               onChange={(e) => {
@@ -109,7 +109,7 @@ export default function EmployeesEmployeePersonalInformation(
             <label>State</label>
             {/* TODO: dropdown */}
             <input
-              className="w-full bg-neutral-800 mb-10"
+              className="mb-10 w-full bg-neutral-800"
               type="text"
               value={newState ?? state}
               onChange={(e) => {
@@ -119,7 +119,7 @@ export default function EmployeesEmployeePersonalInformation(
 
             <label>Zip code</label>
             <input
-              className="w-full bg-neutral-800 mb-10"
+              className="mb-10 w-full bg-neutral-800"
               type="text"
               value={newZipCode ?? zipCode}
               onChange={(e) => {
@@ -130,7 +130,7 @@ export default function EmployeesEmployeePersonalInformation(
             <label>Country</label>
             {/* TODO: Dropdown */}
             <input
-              className="w-full bg-neutral-800 mb-10"
+              className="mb-10 w-full bg-neutral-800"
               type="text"
               value={newCountry ?? country}
               onChange={(e) => {
@@ -158,7 +158,7 @@ export default function EmployeesEmployeePersonalInformation(
         onClick={() => {
           isEditing ? onSave() : setIsEditing(true);
         }}
-        className="bg-white text-black w-32 pill h-10"
+        className="pill h-10 w-32 bg-white text-black"
       >
         {isEditing ? "Save" : "Edit"}
       </Action>
