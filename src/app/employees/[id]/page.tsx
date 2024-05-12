@@ -80,7 +80,6 @@ export default function EmployeesEmployeePage({
   return (
     <>
       <div className="px-8 pb-8 pt-12">
-        {/* TODO: Make editable if privileged  */}
         <div className="relative">
           <>
             <div className="absolute -right-8 -top-24 h-[600px] w-[600px]">
@@ -90,59 +89,68 @@ export default function EmployeesEmployeePage({
                 employee={employee}
                 className="h-full w-full rounded-none"
               />
+
               {isViewingSelf && (
-                <Action className="pill absolute bottom-0 right-8 h-12 translate-y-1/2 border-2 border-black bg-neutral-800 px-6  text-white">
-                  Edit photo ▾
+                <Action className="pill absolute bottom-0 right-8 h-12 translate-y-1/2  bg-white px-6  font-bold text-black">
+                  Edit photo <span className="ml-1">▾</span>
                 </Action>
               )}
             </div>
-            <div className="relative flex min-h-[504px] flex-col items-start bg-red-500">
-              <Headline>
-                {/* TODO: show a lock icon if the user is viewing themselves with a tooltip instructing them to contact HR to change it. We probably want to wrap the last name in a relatively positioned span with an interactive element positioned absolutely  */}
-                <span className="pr-80">{employee.name}</span>
-              </Headline>
-              <p className="mb-2 mt-10 text-5xl">{employee.jobTitle}</p>
-              <div className="mb-8">
-                <a href={`mailto:${employee.workEmail}`}>
-                  {employee.workEmail}
-                </a>
+            <div className="relative flex min-h-[504px]  flex-col justify-between ">
+              <div className="mb-16">
+                <Headline>
+                  {/* TODO: show a lock icon if the user is viewing themselves with a tooltip instructing them to contact HR to change it. We probably want to wrap the last name in a relatively positioned span with an interactive element positioned absolutely  */}
+                  <span className="pr-80">{employee.name}</span>
+                </Headline>
+                <p className="mb-2 mt-10 text-5xl">{employee.jobTitle}</p>
+                <div className="mb-8">
+                  <a
+                    href={`mailto:${employee.workEmail}`}
+                    className="text-3xl font-light"
+                  >
+                    {employee.workEmail}
+                  </a>
+                </div>
+
+                <div className="flex items-center">
+                  <Link
+                    href={{
+                      pathname: "/employees",
+                      query: {
+                        department: employee.department,
+                      },
+                    }}
+                    className={`filter-button pill active inline-flex px-6 py-2 font-semibold ${employee.department
+                      ?.toLowerCase()
+                      .replace(/ /g, "-")}`}
+                  >
+                    {employee.department}
+                  </Link>
+                </div>
               </div>
 
-              <Link
-                href={{
-                  pathname: "/employees",
-                  query: {
-                    department: employee.department,
-                  },
-                }}
-                className={`filter-button active mb-16 px-3 py-2 ${employee.department
-                  ?.toLowerCase()
-                  .replace(/ /g, "-")}`}
-              >
-                {employee.department}
-              </Link>
-
-              <p className="">
-                Join date: {parseDate(employee.startDate)} (
-                {timeAgo(employee.startDate)})
+              <p className="mb-8">
+                Joined {parseDate(employee.startDate)}{" "}
+                <span className="ml-1 text-gray-500">
+                  ({timeAgo(employee.startDate)})
+                </span>
               </p>
             </div>
 
-            <div className="grid gap-10">
+            <div className="relative grid gap-10 pt-6">
+              <div className="border-6  absolute -top-px h-px w-[calc(100%-568px)] border-black bg-neutral-700" />
               {reportsDirectlyTo && (
                 <div>
-                  <h5 className="mb-2 font-bold text-neutral-500">Manager</h5>
+                  <h5 className="mb-2 ">Manager</h5>
                   <div className="">
                     <EmployeesEmployeeThumbnail employee={reportsDirectlyTo} />
                   </div>
                 </div>
               )}
 
-              {directReports.length && (
+              {directReports.length > 0 && (
                 <div>
-                  <h5 className="mb-2 font-bold text-neutral-500">
-                    Direct reports
-                  </h5>
+                  <h5 className="mb-2 ">Direct reports</h5>
                   <ul className="flex gap-10">
                     {directReports.map((d) => {
                       return (
@@ -154,19 +162,23 @@ export default function EmployeesEmployeePage({
                   </ul>
                 </div>
               )}
+              {isViewingSelf && (
+                <div>
+                  <h5 className="mb-2 ">Salary</h5>
+                  <p className="text-5xl">
+                    ${employee.annualSalary}
+                    <span className="ml-1 text-sm text-neutral-500">
+                      per year
+                    </span>
+                  </p>
+                  <EmployeesEmployeePersonalInformation
+                    employee={employee}
+                    onSave={setEmployee}
+                  />
+                </div>
+              )}
             </div>
           </>
-
-          {isViewingSelf && (
-            <>
-              <h5 className="mb-2 font-bold text-neutral-500">Salary</h5>
-              <p className="">${employee.annualSalary} per year</p>
-              <EmployeesEmployeePersonalInformation
-                employee={employee}
-                onSave={setEmployee}
-              />
-            </>
-          )}
         </div>
       </div>
     </>

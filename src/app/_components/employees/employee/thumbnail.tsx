@@ -17,11 +17,14 @@ export default function EmployeesEmployeeThumbnail(
       href={`/employees/${employee.id}`}
       className="flex items-center gap-3"
     >
-      <Avatar employee={employee} className="h-16 w-16" />
+      <Avatar
+        employee={employee}
+        className="h-16 w-16 overflow-hidden rounded-full"
+      />
       <div className="">
         {/* TODO: Truncate names */}
-        <h5 className="text-3xl font-bold leading-none ">{employee.name}</h5>
-        <p className="">{employee.jobTitle}</p>
+        <h5 className="text-lg font-semibold leading-none ">{employee.name}</h5>
+        <p className="text-neutral-500">{employee.jobTitle}</p>
       </div>
     </Link>
   );
