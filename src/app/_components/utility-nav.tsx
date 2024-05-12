@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { EMPLOYEES, USER_ID } from "../lib/data";
 import Avatar from "./avatar";
 
@@ -33,10 +34,12 @@ export default function UtilityNav(args: UtilityNavArgs) {
             🔍
           </div>
         </div>
-        <Avatar
-          employee={testUser}
-          className="justify-end shrink-0 !w-10 !h-10"
-        />
+        <Link href={`/employees/${USER_ID}`}>
+          <Avatar
+            employee={testUser}
+            className="justify-end shrink-0 !w-10 !h-10"
+          />
+        </Link>
       </div>
     </div>
   );

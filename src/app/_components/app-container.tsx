@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RouteNav from "./route-nav";
 import UtilityNav from "./utility-nav";
 
@@ -11,9 +11,16 @@ export default function AppContainer({
 }) {
   const [didScroll, setDidScroll] = useState(false);
 
-  window.addEventListener("scroll", () => {
-    setDidScroll(window.scrollY > 0);
-  });
+  useEffect(() => {
+    const handleScroll = () => {
+      setDidScroll(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <div className="flex">
