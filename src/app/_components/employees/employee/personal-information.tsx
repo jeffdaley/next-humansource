@@ -6,40 +6,59 @@ import Action from "../../action";
 
 interface EmployeesEmployeePersonalInformationArgs {
   employee: Employee;
-  onSave: () => void;
+  onSave: (employee: Employee) => void;
 }
 
 export default function EmployeesEmployeePersonalInformation(
   args: EmployeesEmployeePersonalInformationArgs
 ) {
-  const cachedEmployee = args.employee;
+  const { street, city, state, zipCode, country } = args.employee.address;
+  const { phone, personalEmail } = args.employee;
 
-  const [employee, setEmployee] = useState(args.employee);
-  const [streetAddress, setStreetAddress] = useState(employee.address.street);
-  const [personalEmail, setPersonalEmail] = useState(employee.personalEmail);
+  const [newStreet, setStreet] = useState<string | null>(null);
+  const [newCity, setCity] = useState<string | null>(null);
+  const [newState, setState] = useState<string | null>(null);
+  const [newZipCode, setZipCode] = useState<string | null>(null);
+  const [newCountry, setCountry] = useState<string | null>(null);
+  const [newPhone, setPhone] = useState<string | null>(null);
+  const [newPersonalEmail, setPersonalEmail] = useState<string | null>(null);
 
   const [isEditing, setIsEditing] = useState(false);
+
+  const resetLocalState = () => {
+    setStreet(null);
+    setCity(null);
+    setState(null);
+    setZipCode(null);
+    setCountry(null);
+    setPhone(null);
+    setPersonalEmail(null);
+  };
 
   const onSave = (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
 
     // TODO: Validate
 
-    setEmployee({
-      ...employee,
+    args.onSave({
+      ...args.employee,
       address: {
-        ...employee.address,
-        street: streetAddress,
-        // TODO: local versions?
-        city: employee.address.city,
-        state: employee.address.state,
-        zipCode: employee.address.zipCode,
-        country: employee.address.country,
+        street: newStreet || street,
+        city: newCity || city,
+        state: newState || state,
+        zipCode: newZipCode || zipCode,
+        country: newCountry || country,
       },
-      personalEmail: personalEmail,
+      personalEmail: newPersonalEmail || personalEmail,
     });
 
-    args.onSave();
+    setIsEditing(false);
+
+    resetLocalState();
+  };
+
+  const onCancel = () => {
+    resetLocalState();
     setIsEditing(false);
   };
 
@@ -48,24 +67,75 @@ export default function EmployeesEmployeePersonalInformation(
       {isEditing ? (
         <>
           <form onSubmit={onSave}>
+            <label>Personal email</label>
             <input
               className="w-full bg-neutral-800 mb-10"
               type="email"
-              value={personalEmail}
+              value={newPersonalEmail ?? personalEmail}
               onChange={(e) => {
                 setPersonalEmail(e.target.value);
               }}
-
-              // TODO: this needs cancel / cache logic
             />
+
+            <label>Phone</label>
             <input
               className="w-full bg-neutral-800 mb-10"
               type="text"
-              value={streetAddress}
+              value={newPhone ?? phone}
               onChange={(e) => {
-                setStreetAddress(e.target.value);
+                setPhone(e.target.value);
               }}
-              // TODO: this needs cancel / cache logic
+            />
+            <label>Street</label>
+            <input
+              className="w-full bg-neutral-800 mb-10"
+              type="text"
+              value={newStreet ?? street}
+              onChange={(e) => {
+                setStreet(e.target.value);
+              }}
+            />
+
+            <label>City</label>
+            <input
+              className="w-full bg-neutral-800 mb-10"
+              type="text"
+              value={newCity ?? city}
+              onChange={(e) => {
+                setCity(e.target.value);
+              }}
+            />
+
+            <label>State</label>
+            {/* TODO: dropdown */}
+            <input
+              className="w-full bg-neutral-800 mb-10"
+              type="text"
+              value={newState ?? state}
+              onChange={(e) => {
+                setState(e.target.value);
+              }}
+            />
+
+            <label>Zip code</label>
+            <input
+              className="w-full bg-neutral-800 mb-10"
+              type="text"
+              value={newZipCode ?? zipCode}
+              onChange={(e) => {
+                setZipCode(e.target.value);
+              }}
+            />
+
+            <label>Country</label>
+            {/* TODO: Dropdown */}
+            <input
+              className="w-full bg-neutral-800 mb-10"
+              type="text"
+              value={newCountry ?? country}
+              onChange={(e) => {
+                setCountry(e.target.value);
+              }}
             />
           </form>
         </>
@@ -73,10 +143,14 @@ export default function EmployeesEmployeePersonalInformation(
         <>
           <div className="border border-neutral-800">
             <div>Private to you</div>
-            <p className="">Personal email: {employee.personalEmail}</p>
-            {/* TODO: add all other address info */}
-            <p className="">Address: {employee.address.street}</p>
-            <p className="">Salary: ${employee.annualSalary} per year</p>
+            <h5>Personal contact info</h5>
+            <p className="">{personalEmail}</p>
+            <p>{phone}</p>
+            <h5>Address</h5>
+            <p>{street}</p>
+            <p>{city}</p>
+            <p>{country}</p>
+            <p>{zipCode}</p>
           </div>
         </>
       )}
@@ -88,6 +162,13 @@ export default function EmployeesEmployeePersonalInformation(
       >
         {isEditing ? "Save" : "Edit"}
       </Action>
+      {isEditing && (
+        <button type="reset" onClick={onCancel}>
+          Cancel
+        </button>
+      )}
+
+      {/* A note about changing your name? */}
     </>
   );
 }

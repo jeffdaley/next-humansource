@@ -51,7 +51,7 @@ export default function EmployeesEmployeePage({
    * The employee record, found by its id.
    * TODO: Implement with Next.js fetching, caching, etc.
    */
-  const [employee, setEmployeeInfo] = useState(
+  const [employee, setEmployee] = useState(
     employees.find((e) => e.id === params.id)
   );
 
@@ -90,21 +90,21 @@ export default function EmployeesEmployeePage({
                 className="w-full h-full rounded-none"
               />
               {isViewingSelf && (
-                <Action className="absolute bottom-0 translate-y-1/2 right-8 pill h-12 px-6 bg-neutral-800 border-2 border-black z-10  text-white">
+                <Action className="absolute bottom-0 translate-y-1/2 right-8 pill h-12 px-6 bg-neutral-800 border-2 border-black  text-white">
                   Edit photo ▾
                 </Action>
               )}
             </div>
             <div className="relative flex flex-col items-start">
               <Headline>
+                {/* TODO: show a lock icon if the user is viewing themselves with a tooltip instructing them to contact HR to change it. We probably want to wrap the last name in a relatively positioned span with an interactive element positioned absolutely  */}
                 <span className="pr-80">{employee.name}</span>
               </Headline>
-              <p className="text-3xl mt-10 mb-2">{employee.jobTitle}</p>
+              <p className="text-5xl mt-10 mb-2">{employee.jobTitle}</p>
               <div className="mb-8">
                 <a href={`mailto:${employee.workEmail}`}>
                   {employee.workEmail}
                 </a>
-                <p>{employee.phone}</p>
               </div>
 
               <Link
@@ -114,7 +114,7 @@ export default function EmployeesEmployeePage({
                     department: employee.department,
                   },
                 }}
-                className={`filter-button px-3 py-2 mb-16 ${employee.department
+                className={`filter-button active px-3 py-2 mb-16 ${employee.department
                   ?.toLowerCase()
                   .replace(/ /g, "-")}`}
               >
@@ -122,11 +122,13 @@ export default function EmployeesEmployeePage({
               </Link>
 
               <p className="">
-                Joined {timeAgo(employee.startDate)} (
-                {parseDate(employee.startDate)})
+                Join date: {parseDate(employee.startDate)} (
+                {timeAgo(employee.startDate)})
               </p>
+              {isViewingSelf && (
+                <p className="">Salary: ${employee.annualSalary} per year</p>
+              )}
             </div>
-            <h2 className="text-5xl">Fact sheet</h2>
             <div className="flex gap-16">
               {reportsDirectlyTo && (
                 <div className="py-12">
@@ -159,18 +161,7 @@ export default function EmployeesEmployeePage({
             <>
               <EmployeesEmployeePersonalInformation
                 employee={employee}
-                onSave={() => {
-                  // Update the employees array with the new employee
-
-                  // Find the record by the index of the USER_ID
-                  const recordIndex = employees.findIndex(
-                    (employee) => employee.id === USER_ID
-                  );
-
-                  employees[recordIndex] = employee;
-
-                  setEmployees(employees);
-                }}
+                onSave={setEmployee}
               />
             </>
           )}
