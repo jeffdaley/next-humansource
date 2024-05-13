@@ -33,6 +33,9 @@ export default function AppContainer({
       <div className="w-full">
         <UtilityNav didScroll={didScroll} />
         <div className="w-full">{children}</div>
+        <footer className=" p-8">
+          <div className="border-t border-t-neutral-700">Footer</div>
+        </footer>
       </div>
     </div>
   );

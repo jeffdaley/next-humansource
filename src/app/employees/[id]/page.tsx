@@ -2,7 +2,9 @@
 
 import Action from "@/app/_components/action";
 import Avatar from "@/app/_components/avatar";
+import PersonalEmail from "@/app/_components/employees/employee/personal-email";
 import PersonalInformation from "@/app/_components/employees/employee/personal-information";
+import Phone from "@/app/_components/employees/employee/phone";
 import Salary from "@/app/_components/employees/employee/salary";
 import Thumbnail from "@/app/_components/employees/employee/thumbnail";
 import { Headline } from "@/app/_components/headline";
@@ -137,6 +139,7 @@ export default function EmployeesEmployeePage({
                 <span className="ml-1 text-neutral-500">
                   ({timeAgo(employee.startDate)})
                 </span>
+                TODO: city, state, country
               </p>
             </div>
 
@@ -144,8 +147,8 @@ export default function EmployeesEmployeePage({
               {/* Horizontal Rule */}
               <div className="border-6  absolute -top-px h-px w-[calc(100%-568px)] border-black bg-neutral-700" />
 
-              {/* Manager */}
               <div className="grid w-full grid-cols-6 gap-10">
+                {/* Manager */}
                 {reportsDirectlyTo && (
                   <div className="col-span-1">
                     <h5 className="mb-3 font-bold uppercase text-neutral-500">
@@ -179,11 +182,13 @@ export default function EmployeesEmployeePage({
               {/* Salary & personal info */}
               {isViewingSelf && (
                 <div className="grid gap-10">
+                  <Salary salary={employee.annualSalary} />
+                  <PersonalEmail employee={employee} onSave={setEmployee} />
+                  <Phone employee={employee} onSave={setEmployee} />
                   <PersonalInformation
                     employee={employee}
                     onSave={setEmployee}
                   />
-                  <Salary salary={employee.annualSalary} />
                 </div>
               )}
             </div>

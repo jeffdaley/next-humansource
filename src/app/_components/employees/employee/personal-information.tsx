@@ -62,14 +62,12 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
 
   return (
     <div>
-      <div className="mb-3 flex items-center gap-2.5">
-        <h5 className="font-bold uppercase text-neutral-500">
-          Personal Info 🔒
-        </h5>
+      <div className="flex items-center gap-2.5">
+        <h5 className="font-bold uppercase text-neutral-500">Address 🔒</h5>
         {!isEditing && (
           <Action
             onClick={() => setIsEditing(true)}
-            className="pill w-12 bg-neutral-500 text-xs text-black  hover:bg-neutral-400 "
+            className="pill w-12 bg-white text-xs text-black  hover:bg-neutral-400 "
           >
             Edit
           </Action>
@@ -78,28 +76,6 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
       {isEditing ? (
         <>
           <form onSubmit={onSave}>
-            <div className="flex">
-              {/* TODO: Semantics */}
-              <label className="w-32 font-bold">Email</label>
-              <input
-                className="mb-10 w-full bg-neutral-800"
-                type="email"
-                value={newPersonalEmail ?? personalEmail}
-                onChange={(e) => {
-                  setPersonalEmail(e.target.value);
-                }}
-              />
-            </div>
-
-            <label>Phone</label>
-            <input
-              className="mb-10 w-full bg-neutral-800"
-              type="text"
-              value={newPhone ?? phone}
-              onChange={(e) => {
-                setPhone(e.target.value);
-              }}
-            />
             <label>Street</label>
             <input
               className="mb-10 w-full bg-neutral-800"
@@ -156,12 +132,7 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
       ) : (
         <>
           <div className="grid gap-4">
-            <div className="flex">
-              <p className="w-32 font-bold">Email</p>
-              <p className="">{personalEmail}</p>
-            </div>
-            <div className="flex">
-              <p className="w-32 font-bold">Address</p>
+            <div className="flex text-5xl">
               <div>
                 <p>{street}</p>
                 <p>
@@ -169,10 +140,6 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
                 </p>
                 <p>{zipCode}</p>
               </div>
-            </div>
-            <div className="flex">
-              <p className="w-32 font-bold">Phone</p>
-              <p>{phone}</p>
             </div>
           </div>
         </>

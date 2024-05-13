@@ -12,7 +12,7 @@ export default function Salary(args: SalaryComponentArgs) {
 
   const formattedSalary = isShown
     ? `$${args.salary.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
-    : "Hidden";
+    : "×××××××××";
 
   return (
     <div>
@@ -20,12 +20,12 @@ export default function Salary(args: SalaryComponentArgs) {
         <h5 className="font-bold uppercase text-neutral-500">Salary 🔒</h5>
         <Action
           onClick={() => setIsShown(!isShown)}
-          className="pill w-12 bg-neutral-500 text-xs text-black  hover:bg-neutral-400 "
+          className="pill w-12 bg-white text-xs text-black  hover:bg-neutral-400 "
         >
           {isShown ? "Hide" : "Show"}
         </Action>
       </div>
-      <p className="text-5xl font-light">
+      <p className={`text-5xl font-light ${!isShown && "text-neutral-500"}`}>
         {formattedSalary}
         {isShown && (
           <span className="ml-1 text-sm text-neutral-500">per year</span>

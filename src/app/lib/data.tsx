@@ -19,7 +19,7 @@ export const EMPLOYEES: Employee[] = [
       country: "United States",
     },
     workEmail: "zay@tabbyml.com",
-    personalEmail: "zay@gmail.com",
+    personalEmail: "zaynib.tabby@gmail.com",
     phone: "+1 203-666-4133",
     jobTitle: "Staff Security Engineer",
     department: DepartmentName.Engineering,

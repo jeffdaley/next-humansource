@@ -23,7 +23,7 @@ h1 {
 }
 
 input {
-  @apply h-9 px-4;
+  @apply bg-neutral-800 leading-none;
 }
 
 @layer utilities {
