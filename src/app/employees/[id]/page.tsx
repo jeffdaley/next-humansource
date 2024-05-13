@@ -3,7 +3,8 @@
 import Action from "@/app/_components/action";
 import Avatar from "@/app/_components/avatar";
 import EmployeesEmployeePersonalInformation from "@/app/_components/employees/employee/personal-information";
-import EmployeesEmployeeThumbnail from "@/app/_components/employees/employee/thumbnail";
+import EmployeeSalary from "@/app/_components/employees/employee/salary";
+import EmployeeThumbnail from "@/app/_components/employees/employee/thumbnail";
 import { Headline } from "@/app/_components/headline";
 import { parseDate, timeAgo } from "@/app/_utils/date";
 import { EMPLOYEES, USER_ID } from "@/app/lib/data";
@@ -91,7 +92,7 @@ export default function EmployeesEmployeePage({
               />
 
               {isViewingSelf && (
-                <Action className="pill absolute bottom-0 right-8 h-12 translate-y-1/2  bg-white px-6  font-bold text-black">
+                <Action className="pill absolute bottom-0 right-8 h-12 translate-y-1/2  bg-white px-6 text-black">
                   Edit photo <span className="ml-1">▾</span>
                 </Action>
               )}
@@ -120,7 +121,7 @@ export default function EmployeesEmployeePage({
                         department: employee.department,
                       },
                     }}
-                    className={`filter-button pill active inline-flex px-6 py-2 font-semibold ${employee.department
+                    className={`filter-button pill active inline-flex px-6 py-2  ${employee.department
                       ?.toLowerCase()
                       .replace(/ /g, "-")}`}
                   >
@@ -131,51 +132,52 @@ export default function EmployeesEmployeePage({
 
               <p className="mb-8">
                 Joined {parseDate(employee.startDate)}{" "}
-                <span className="ml-1 text-gray-500">
+                <span className="ml-1 text-neutral-500">
                   ({timeAgo(employee.startDate)})
                 </span>
               </p>
             </div>
 
-            <div className="relative grid gap-10 pt-6">
+            <div className="relative flex gap-10 pt-8">
               <div className="border-6  absolute -top-px h-px w-[calc(100%-568px)] border-black bg-neutral-700" />
-              {reportsDirectlyTo && (
-                <div>
-                  <h5 className="mb-2 ">Manager</h5>
+              <div className="grid w-1/3 gap-10">
+                {reportsDirectlyTo && (
                   <div className="">
-                    <EmployeesEmployeeThumbnail employee={reportsDirectlyTo} />
+                    <h5 className="mb-2.5 w-52 shrink-0">Manager</h5>
+                    <div className="">
+                      <EmployeeThumbnail employee={reportsDirectlyTo} />
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              {directReports.length > 0 && (
-                <div>
-                  <h5 className="mb-2 ">Direct reports</h5>
-                  <ul className="flex gap-10">
-                    {directReports.map((d) => {
-                      return (
-                        <li className="" key={d.id}>
-                          <EmployeesEmployeeThumbnail employee={d} />
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              )}
+                {directReports.length > 0 && (
+                  <div className="">
+                    <h5 className="mb-2.5 w-52 shrink-0">Direct reports</h5>
+                    <ul className="flex flex-col gap-3">
+                      {directReports.map((d) => {
+                        return (
+                          <li className="" key={d.id}>
+                            <EmployeeThumbnail employee={d} />
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
+              </div>
+
               {isViewingSelf && (
-                <div>
-                  <h5 className="mb-2 ">Salary</h5>
-                  <p className="text-5xl">
-                    ${employee.annualSalary}
-                    <span className="ml-1 text-sm text-neutral-500">
-                      per year
-                    </span>
-                  </p>
-                  <EmployeesEmployeePersonalInformation
-                    employee={employee}
-                    onSave={setEmployee}
-                  />
-                </div>
+                <>
+                  <div className="w-1/3">
+                    <EmployeeSalary salary={employee.annualSalary} />
+                  </div>
+                  <div className="w-1/3">
+                    <EmployeesEmployeePersonalInformation
+                      employee={employee}
+                      onSave={setEmployee}
+                    />
+                  </div>
+                </>
               )}
             </div>
           </>

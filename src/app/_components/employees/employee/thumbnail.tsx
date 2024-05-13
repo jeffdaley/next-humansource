@@ -15,14 +15,14 @@ export default function EmployeesEmployeeThumbnail(
   return (
     <Link
       href={`/employees/${employee.id}`}
-      className="flex items-center gap-3"
+      className="flex items-center gap-3.5"
     >
       <Avatar
         employee={employee}
-        className="h-16 w-16 overflow-hidden rounded-full"
+        className="h-12 w-12 overflow-hidden rounded-full"
       />
       <div className="">
-        {/* TODO: Truncate names */}
+        {/* TODO: Truncate/handle long names */}
         <h5 className="text-lg font-semibold leading-none ">{employee.name}</h5>
         <p className="text-neutral-500">{employee.jobTitle}</p>
       </div>

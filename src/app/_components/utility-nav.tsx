@@ -20,7 +20,7 @@ export default function UtilityNav(args: UtilityNavArgs) {
       <div className="flex shrink-0 gap-1 text-center">
         <div className="h-6 w-6 rounded-full bg-white" />
         HumanSource
-        <div className="text-gray-500">| TabbyML</div>
+        <div className="text-neutral-500">| TabbyML</div>
       </div>
       <div className="flex w-full justify-end gap-2.5">
         <div className="relative w-full max-w-[600px]">

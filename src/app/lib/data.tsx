@@ -25,7 +25,7 @@ export const EMPLOYEES: Employee[] = [
     department: DepartmentName.Engineering,
     reportsDirectlyTo: "2",
     directReports: ["3", "4"],
-    annualSalary: 100000,
+    annualSalary: 168000,
     startDate: 1707606201,
   },
   {
@@ -66,7 +66,7 @@ export const EMPLOYEES: Employee[] = [
     jobTitle: "Director of Sales",
     department: DepartmentName.Sales,
     annualSalary: 100000,
-    startDate: 2000000000,
+    startDate: 1651606201,
   },
   {
     id: "4",

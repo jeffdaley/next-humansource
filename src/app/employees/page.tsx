@@ -44,7 +44,7 @@ export default function EmployeesPage({
           {DEPARTMENTS.map((department) => (
             <li key={department.id}>
               <Link
-                className={`filter-button grid h-10 place-items-center px-6 ${
+                className={`filter-button pill grid h-10 place-items-center px-6 ${
                   activeFilter === department.name && "active"
                 } ${department.name.toLowerCase().replace(/ /g, "-")}`}
                 href={{
@@ -79,7 +79,10 @@ export default function EmployeesPage({
         {sortedEmployees.map((employee) => (
           <li key={employee.id} className="relative">
             <Link href={`/employees/${employee.id}`} className="flex">
-              <Avatar employee={employee} className="h-20 w-20" />
+              <Avatar
+                employee={employee}
+                className="h-20 w-20 overflow-hidden rounded-full"
+              />
               <div>
                 <h4 className="text-3xl font-bold">{employee.name}</h4>
                 <p>

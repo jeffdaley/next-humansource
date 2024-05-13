@@ -141,9 +141,9 @@ export default function EmployeesEmployeePersonalInformation(
         </>
       ) : (
         <>
-          <div className="border border-neutral-800">
+          <div className="border-t border-neutral-700 pt-8">
+            <h3 className="text-5xl">Personal info</h3>
             <div>Private to you</div>
-            <h5>Personal contact info</h5>
             <p className="">{personalEmail}</p>
             <p>{phone}</p>
             <h5>Address</h5>
