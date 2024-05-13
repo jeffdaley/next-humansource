@@ -34,7 +34,9 @@ export default function AppContainer({
         <UtilityNav didScroll={didScroll} />
         <div className="w-full">{children}</div>
         <footer className=" p-8">
-          <div className="border-t border-t-neutral-700">Footer</div>
+          <div className=" pt-4 text-neutral-500">
+            &copy; {new Date().getFullYear()} HumanSource LLC
+          </div>
         </footer>
       </div>
     </div>

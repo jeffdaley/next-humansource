@@ -23,7 +23,7 @@ h1 {
 }
 
 input {
-  @apply bg-neutral-800 leading-none;
+  @apply bg-neutral-800 leading-none placeholder-neutral-500;
 }
 
 @layer utilities {
@@ -37,33 +37,33 @@ input {
 }
 
 .filter-button {
-  @apply border border-white/20 text-white;
+  @apply h-10 items-center border border-white/20 px-6 py-2 text-white;
 
   &.sales {
-    @apply border-yellow-200/20 text-yellow-200;
+    @apply border-yellow-200/50 text-yellow-500;
   }
 
   &.engineering {
-    @apply border-blue-200/20 text-blue-200;
+    @apply border-teal-200/50 text-teal-500;
   }
 
   &.marketing {
-    @apply border-red-200/20 text-red-200;
+    @apply border-pink-200/50 text-pink-500;
   }
 
   &.active {
     @apply border-transparent bg-white text-black;
 
     &.sales {
-      @apply bg-yellow-200;
+      @apply bg-yellow-500;
     }
 
     &.engineering {
-      @apply bg-blue-200 text-black;
+      @apply bg-teal-500 text-black;
     }
 
     &.marketing {
-      @apply bg-red-200 text-black;
+      @apply bg-pink-500 text-black;
     }
   }
 }

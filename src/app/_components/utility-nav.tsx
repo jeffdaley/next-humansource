@@ -27,7 +27,7 @@ export default function UtilityNav(args: UtilityNavArgs) {
           <input
             type="search"
             placeholder="Find people, benefits, policies..."
-            className="pill h-10  w-full bg-neutral-800 pl-11 pr-3 placeholder-neutral-500"
+            className="pill h-10  w-full bg-neutral-800 pl-11 pr-3"
           />
           {/* Search icon */}
           <div className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2">

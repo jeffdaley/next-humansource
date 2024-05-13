@@ -25,7 +25,6 @@ export interface Employee {
     city: string;
     state: string;
     zipCode: string;
-    country: string;
   }; // unused
   jobTitle: string;
   phone: string;
@@ -33,7 +32,7 @@ export interface Employee {
   startDate: number;
   imageURL?: string;
   birthday?: string; // unused
-  department?: DepartmentName;
+  department: DepartmentName;
   pronunciation?: string; // unused
   pronouns?: string;
   reportsDirectlyTo?: string;
@@ -71,6 +70,10 @@ export default function EmployeesEmployeePage({
     (e) => e.id === employee.reportsDirectlyTo,
   );
 
+  const dasherizedDepartment = employee.department
+    .toLowerCase()
+    .replace(/ /g, "-");
+
   // TODO: Design "not found" state
   if (!employee) {
     return (
@@ -94,9 +97,11 @@ export default function EmployeesEmployeePage({
               />
 
               {isViewingSelf && (
-                <Action className="pill absolute bottom-0 right-8 h-12 translate-y-1/2  bg-white px-6 text-black">
-                  Edit photo <span className="ml-1">▾</span>
-                </Action>
+                <div className="absolute bottom-0 right-8 translate-y-1/2">
+                  <Action className="pill  h-12   bg-white px-6 text-black">
+                    Edit photo <span className="ml-1">▾</span>
+                  </Action>
+                </div>
               )}
             </div>
             <div className="relative flex min-h-[504px]  flex-col justify-between ">
@@ -125,9 +130,7 @@ export default function EmployeesEmployeePage({
                         department: employee.department,
                       },
                     }}
-                    className={`filter-button pill active inline-flex px-6 py-2  ${employee.department
-                      ?.toLowerCase()
-                      .replace(/ /g, "-")}`}
+                    className={`filter-button pill active inline-flex  ${dasherizedDepartment}`}
                   >
                     {employee.department}
                   </Link>
@@ -145,7 +148,9 @@ export default function EmployeesEmployeePage({
 
             <div className="relative grid gap-10  pt-8">
               {/* Horizontal Rule */}
-              <div className="border-6  absolute -top-px h-px w-[calc(100%-568px)] border-black bg-neutral-700" />
+              <div
+                className={`absolute -top-px h-px w-[calc(100%-568px)] bg-neutral-700`}
+              />
 
               <div className="grid w-full grid-cols-6 gap-10">
                 {/* Manager */}
@@ -181,14 +186,18 @@ export default function EmployeesEmployeePage({
 
               {/* Salary & personal info */}
               {isViewingSelf && (
-                <div className="grid gap-10">
-                  <Salary salary={employee.annualSalary} />
-                  <PersonalEmail employee={employee} onSave={setEmployee} />
-                  <Phone employee={employee} onSave={setEmployee} />
-                  <PersonalInformation
-                    employee={employee}
-                    onSave={setEmployee}
-                  />
+                <div className="relative">
+                  <div className="grid gap-10 border-t border-t-neutral-700 pt-8">
+                    <Salary salary={employee.annualSalary} />
+                    {/* </div>
+                  <div className="grid gap-10 border-t border-t-neutral-700 pt-8"> */}
+                    <PersonalEmail employee={employee} onSave={setEmployee} />
+                    <Phone employee={employee} onSave={setEmployee} />
+                    <PersonalInformation
+                      employee={employee}
+                      onSave={setEmployee}
+                    />
+                  </div>
                 </div>
               )}
             </div>

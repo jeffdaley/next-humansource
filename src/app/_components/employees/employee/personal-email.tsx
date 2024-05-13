@@ -48,17 +48,15 @@ export default function PersonalEmail(args: PersonalEmailArgs) {
   return (
     <div className="max-w-4xl">
       <div className="flex items-center gap-2.5">
-        <h5 className="font-bold uppercase text-neutral-500">
-          Personal email 🔒
-        </h5>
-        {!isEditing && (
+        <h5 className="font-bold uppercase text-neutral-500">Personal email</h5>
+        {/* {!isEditing && (
           <Action
             onClick={() => setIsEditing(true)}
             className="pill w-12 bg-white text-xs text-black  hover:bg-neutral-400 "
           >
             Edit
           </Action>
-        )}
+        )} */}
       </div>
       <div className="">
         {isEditing ? (

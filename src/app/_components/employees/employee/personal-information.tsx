@@ -10,16 +10,12 @@ interface PersonalInformationArgs {
 }
 
 export default function PersonalInformation(args: PersonalInformationArgs) {
-  const { street, city, state, zipCode, country } = args.employee.address;
-  const { phone, personalEmail } = args.employee;
+  const { street, city, state, zipCode } = args.employee.address;
 
   const [newStreet, setStreet] = useState<string | null>(null);
   const [newCity, setCity] = useState<string | null>(null);
   const [newState, setState] = useState<string | null>(null);
   const [newZipCode, setZipCode] = useState<string | null>(null);
-  const [newCountry, setCountry] = useState<string | null>(null);
-  const [newPhone, setPhone] = useState<string | null>(null);
-  const [newPersonalEmail, setPersonalEmail] = useState<string | null>(null);
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -28,9 +24,6 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
     setCity(null);
     setState(null);
     setZipCode(null);
-    setCountry(null);
-    setPhone(null);
-    setPersonalEmail(null);
   };
 
   const onSave = (e?: React.FormEvent<HTMLFormElement>) => {
@@ -45,9 +38,7 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
         city: newCity || city,
         state: newState || state,
         zipCode: newZipCode || zipCode,
-        country: newCountry || country,
       },
-      personalEmail: newPersonalEmail || personalEmail,
     });
 
     setIsEditing(false);
@@ -63,100 +54,93 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
   return (
     <div>
       <div className="flex items-center gap-2.5">
-        <h5 className="font-bold uppercase text-neutral-500">Address 🔒</h5>
-        {!isEditing && (
+        <h5 className="font-bold uppercase text-neutral-500">Address</h5>
+        {/* {!isEditing && (
           <Action
             onClick={() => setIsEditing(true)}
             className="pill w-12 bg-white text-xs text-black  hover:bg-neutral-400 "
           >
             Edit
           </Action>
-        )}
+        )} */}
       </div>
       {isEditing ? (
         <>
-          <form onSubmit={onSave}>
-            <label>Street</label>
+          <form className="grid max-w-4xl" onSubmit={onSave}>
+            {/* TODO: Improve semantics, accessibility */}
             <input
-              className="mb-10 w-full bg-neutral-800"
+              placeholder="Street"
+              className="h-16 text-5xl leading-none"
               type="text"
               value={newStreet ?? street}
               onChange={(e) => {
                 setStreet(e.target.value);
               }}
             />
+            <div className="flex">
+              <input
+                placeholder="City"
+                className="inline-flex h-16 w-full text-5xl leading-none"
+                type="text"
+                value={newCity ?? city}
+                onChange={(e) => {
+                  setCity(e.target.value);
+                }}
+              />
 
-            <label>City</label>
-            <input
-              className="mb-10 w-full bg-neutral-800"
-              type="text"
-              value={newCity ?? city}
-              onChange={(e) => {
-                setCity(e.target.value);
-              }}
-            />
-
-            <label>State</label>
-            {/* TODO: dropdown */}
-            <input
-              className="mb-10 w-full bg-neutral-800"
-              type="text"
-              value={newState ?? state}
-              onChange={(e) => {
-                setState(e.target.value);
-              }}
-            />
-
-            <label>Zip code</label>
-            <input
-              className="mb-10 w-full bg-neutral-800"
-              type="text"
-              value={newZipCode ?? zipCode}
-              onChange={(e) => {
-                setZipCode(e.target.value);
-              }}
-            />
-
-            <label>Country</label>
-            {/* TODO: Dropdown */}
-            <input
-              className="mb-10 w-full bg-neutral-800"
-              type="text"
-              value={newCountry ?? country}
-              onChange={(e) => {
-                setCountry(e.target.value);
-              }}
-            />
+              {/* TODO: dropdown */}
+              <input
+                placeholder="State"
+                className="h-16 w-80 shrink-0 text-5xl leading-none"
+                type="text"
+                value={newState ?? state}
+                onChange={(e) => {
+                  setState(e.target.value);
+                }}
+              />
+            </div>
+            <div className="flex">
+              <input
+                placeholder="Zip code"
+                className="h-16 w-80 text-5xl leading-none"
+                type="text"
+                value={newZipCode ?? zipCode}
+                onChange={(e) => {
+                  setZipCode(e.target.value);
+                }}
+              />
+              <Action
+                onClick={() => {
+                  isEditing ? onSave() : setIsEditing(true);
+                }}
+                className="pill h-10 w-32 bg-white text-black"
+              >
+                Save
+              </Action>
+              <Action onClick={onCancel}>Cancel</Action>
+            </div>
           </form>
         </>
       ) : (
         <>
           <div className="grid gap-4">
-            <div className="flex text-5xl">
-              <div>
-                <p>{street}</p>
-                <p>
-                  {city}, {state}
-                </p>
-                <p>{zipCode}</p>
-              </div>
+            <div className="flex flex-col text-5xl leading-[64px]">
+              <p>{street}</p>
+              <p>
+                {city}, {state}
+              </p>
+              <p>{zipCode}</p>
             </div>
           </div>
         </>
       )}
-      {isEditing && (
-        <>
-          <Action
-            onClick={() => {
-              isEditing ? onSave() : setIsEditing(true);
-            }}
-            className="pill h-10 w-32 bg-white text-black"
-          >
-            Save
-          </Action>
-          <Action onClick={onCancel}>Cancel</Action>
-        </>
-      )}
+
+      <Action
+        onClick={() => setIsEditing(true)}
+        className="pill  h-12   bg-white px-6 text-black"
+      >
+        Update contact information
+      </Action>
 
       {/* A note about changing your name? */}
     </div>
