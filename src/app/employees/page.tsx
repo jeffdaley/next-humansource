@@ -44,7 +44,7 @@ export default function EmployeesPage({
           {DEPARTMENTS.map((department) => (
             <li key={department.id}>
               <Link
-                className={`filter-button pill grid ${
+                className={`filter-button grid ${
                   activeFilter === department.name && "active"
                 } ${department.name.toLowerCase().replace(/ /g, "-")}`}
                 href={{

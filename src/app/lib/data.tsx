@@ -33,8 +33,8 @@ export const EMPLOYEES: Employee[] = [
     imageURL: "employee-2.jpg",
     address: {
       street: "1000 W 12th St",
-      city: "New York",
-      state: "NY",
+      city: "San Francisco",
+      state: "CA",
       zipCode: "10024",
     },
     workEmail: "gage@tabbyml.com",
@@ -52,8 +52,8 @@ export const EMPLOYEES: Employee[] = [
     imageURL: "employee-3.jpg",
     address: {
       street: "1000 W 12th St",
-      city: "New York",
-      state: "NY",
+      city: "Bayonne",
+      state: "NJ",
       zipCode: "10024",
     },
     reportsDirectlyTo: "1",
@@ -71,8 +71,8 @@ export const EMPLOYEES: Employee[] = [
     imageURL: "employee-4.jpg",
     address: {
       street: "1000 W 12th St",
-      city: "New York",
-      state: "NY",
+      city: "Boston",
+      state: "MA",
       zipCode: "10024",
     },
     reportsDirectlyTo: "1",

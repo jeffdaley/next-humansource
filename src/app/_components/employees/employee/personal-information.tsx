@@ -133,7 +133,7 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
                     }}
                   />
                 </div>
-                <div className="flex">
+                <div className="flex gap-px">
                   <input
                     placeholder="City"
                     className="inline-flex h-16 w-full text-5xl leading-none focus:z-10"
@@ -147,7 +147,7 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
                   {/* TODO: dropdown */}
                   <input
                     placeholder="State"
-                    className="h-16 w-80 shrink-0 pl-1 text-5xl leading-none focus:z-10"
+                    className="h-16 w-80 shrink-0 pl-4 text-5xl leading-none focus:z-10"
                     type="text"
                     value={newState ?? state}
                     onChange={(e) => {
@@ -157,7 +157,7 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
                 </div>
                 <input
                   placeholder="Zip code"
-                  className="h-16 w-80 text-5xl leading-none"
+                  className="h-16 w-80 border-t border-t-black text-5xl leading-none"
                   type="text"
                   value={newZipCode ?? zipCode}
                   onChange={(e) => {
