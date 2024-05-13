@@ -98,7 +98,7 @@ export default function EmployeesEmployeePage({
 
               {isViewingSelf && (
                 <div className="absolute bottom-0 right-8 translate-y-1/2">
-                  <Action className="pill  h-12   bg-white px-6 text-black">
+                  <Action className="pill  h-12   bg-white px-8 text-black">
                     Edit photo <span className="ml-1">▾</span>
                   </Action>
                 </div>
@@ -189,10 +189,6 @@ export default function EmployeesEmployeePage({
                 <div className="relative">
                   <div className="grid gap-10 border-t border-t-neutral-700 pt-8">
                     <Salary salary={employee.annualSalary} />
-                    {/* </div>
-                  <div className="grid gap-10 border-t border-t-neutral-700 pt-8"> */}
-                    <PersonalEmail employee={employee} onSave={setEmployee} />
-                    <Phone employee={employee} onSave={setEmployee} />
                     <PersonalInformation
                       employee={employee}
                       onSave={setEmployee}

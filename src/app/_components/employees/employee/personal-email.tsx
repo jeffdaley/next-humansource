@@ -63,7 +63,6 @@ export default function PersonalEmail(args: PersonalEmailArgs) {
           <form onSubmit={onSave}>
             <div className="flex gap-3">
               <input
-                autoFocus
                 className=" h-16 w-full text-5xl font-light"
                 type="email"
                 value={newPersonalEmail ?? personalEmail}

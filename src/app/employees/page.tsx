@@ -81,11 +81,12 @@ export default function EmployeesPage({
             <Link href={`/employees/${employee.id}`} className="flex">
               <Avatar
                 employee={employee}
-                className="h-20 w-20 overflow-hidden rounded-full"
+                className="h-12 w-12 overflow-hidden rounded-full"
               />
               <div>
-                <h4 className="text-3xl font-bold">{employee.name}</h4>
-                <p>
+                <h4 className="text-xl font-bold">{employee.name}</h4>
+                <p className="text-neutral-500">
+                  {employee.jobTitle}
                   {employee.workEmail} | {employee.department} | Started{" "}
                   {parseDate(employee.startDate)}
                 </p>
