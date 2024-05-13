@@ -7,7 +7,7 @@ interface SalaryComponentArgs {
   salary: number;
 }
 
-export default function EmployeesEmployeeSalary(args: SalaryComponentArgs) {
+export default function Salary(args: SalaryComponentArgs) {
   const [isShown, setIsShown] = useState(false);
 
   const formattedSalary = isShown
@@ -16,16 +16,16 @@ export default function EmployeesEmployeeSalary(args: SalaryComponentArgs) {
 
   return (
     <div>
-      <div className="mb-2 flex items-center gap-2">
-        <h5 className="">Salary</h5>
+      <div className="mb-3 flex items-center gap-2.5">
+        <h5 className="font-bold uppercase text-neutral-500">Salary 🔒</h5>
         <Action
           onClick={() => setIsShown(!isShown)}
-          className="pill w-12 border border-neutral-500 text-xs  text-neutral-500"
+          className="pill w-12 bg-neutral-500 text-xs text-black  hover:bg-neutral-400 "
         >
           {isShown ? "Hide" : "Show"}
         </Action>
       </div>
-      <p className={`text-5xl ${!isShown && "text-neutral-500"}`}>
+      <p className="text-5xl font-light">
         {formattedSalary}
         {isShown && (
           <span className="ml-1 text-sm text-neutral-500">per year</span>

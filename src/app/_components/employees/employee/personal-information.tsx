@@ -4,14 +4,12 @@ import { Employee } from "@/app/employees/[id]/page";
 import React, { useState } from "react";
 import Action from "../../action";
 
-interface EmployeesEmployeePersonalInformationArgs {
+interface PersonalInformationArgs {
   employee: Employee;
   onSave: (employee: Employee) => void;
 }
 
-export default function EmployeesEmployeePersonalInformation(
-  args: EmployeesEmployeePersonalInformationArgs,
-) {
+export default function PersonalInformation(args: PersonalInformationArgs) {
   const { street, city, state, zipCode, country } = args.employee.address;
   const { phone, personalEmail } = args.employee;
 
@@ -63,19 +61,35 @@ export default function EmployeesEmployeePersonalInformation(
   };
 
   return (
-    <>
+    <div>
+      <div className="mb-3 flex items-center gap-2.5">
+        <h5 className="font-bold uppercase text-neutral-500">
+          Personal Info 🔒
+        </h5>
+        {!isEditing && (
+          <Action
+            onClick={() => setIsEditing(true)}
+            className="pill w-12 bg-neutral-500 text-xs text-black  hover:bg-neutral-400 "
+          >
+            Edit
+          </Action>
+        )}
+      </div>
       {isEditing ? (
         <>
           <form onSubmit={onSave}>
-            <label>Personal email</label>
-            <input
-              className="mb-10 w-full bg-neutral-800"
-              type="email"
-              value={newPersonalEmail ?? personalEmail}
-              onChange={(e) => {
-                setPersonalEmail(e.target.value);
-              }}
-            />
+            <div className="flex">
+              {/* TODO: Semantics */}
+              <label className="w-32 font-bold">Email</label>
+              <input
+                className="mb-10 w-full bg-neutral-800"
+                type="email"
+                value={newPersonalEmail ?? personalEmail}
+                onChange={(e) => {
+                  setPersonalEmail(e.target.value);
+                }}
+              />
+            </div>
 
             <label>Phone</label>
             <input
@@ -141,34 +155,43 @@ export default function EmployeesEmployeePersonalInformation(
         </>
       ) : (
         <>
-          <div className="border-t border-neutral-700 pt-8">
-            <h3 className="text-5xl">Personal info</h3>
-            <div>Private to you</div>
-            <p className="">{personalEmail}</p>
-            <p>{phone}</p>
-            <h5>Address</h5>
-            <p>{street}</p>
-            <p>{city}</p>
-            <p>{country}</p>
-            <p>{zipCode}</p>
+          <div className="grid gap-4">
+            <div className="flex">
+              <p className="w-32 font-bold">Email</p>
+              <p className="">{personalEmail}</p>
+            </div>
+            <div className="flex">
+              <p className="w-32 font-bold">Address</p>
+              <div>
+                <p>{street}</p>
+                <p>
+                  {city}, {state}
+                </p>
+                <p>{zipCode}</p>
+              </div>
+            </div>
+            <div className="flex">
+              <p className="w-32 font-bold">Phone</p>
+              <p>{phone}</p>
+            </div>
           </div>
         </>
       )}
-      <Action
-        onClick={() => {
-          isEditing ? onSave() : setIsEditing(true);
-        }}
-        className="pill h-10 w-32 bg-white text-black"
-      >
-        {isEditing ? "Save" : "Edit"}
-      </Action>
       {isEditing && (
-        <button type="reset" onClick={onCancel}>
-          Cancel
-        </button>
+        <>
+          <Action
+            onClick={() => {
+              isEditing ? onSave() : setIsEditing(true);
+            }}
+            className="pill h-10 w-32 bg-white text-black"
+          >
+            Save
+          </Action>
+          <Action onClick={onCancel}>Cancel</Action>
+        </>
       )}
 
       {/* A note about changing your name? */}
-    </>
+    </div>
   );
 }

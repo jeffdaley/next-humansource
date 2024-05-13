@@ -2,9 +2,9 @@
 
 import Action from "@/app/_components/action";
 import Avatar from "@/app/_components/avatar";
-import EmployeesEmployeePersonalInformation from "@/app/_components/employees/employee/personal-information";
-import EmployeeSalary from "@/app/_components/employees/employee/salary";
-import EmployeeThumbnail from "@/app/_components/employees/employee/thumbnail";
+import PersonalInformation from "@/app/_components/employees/employee/personal-information";
+import Salary from "@/app/_components/employees/employee/salary";
+import Thumbnail from "@/app/_components/employees/employee/thumbnail";
 import { Headline } from "@/app/_components/headline";
 import { parseDate, timeAgo } from "@/app/_utils/date";
 import { EMPLOYEES, USER_ID } from "@/app/lib/data";
@@ -103,11 +103,13 @@ export default function EmployeesEmployeePage({
                   {/* TODO: show a lock icon if the user is viewing themselves with a tooltip instructing them to contact HR to change it. We probably want to wrap the last name in a relatively positioned span with an interactive element positioned absolutely  */}
                   <span className="pr-80">{employee.name}</span>
                 </Headline>
-                <p className="mb-2 mt-10 text-5xl">{employee.jobTitle}</p>
+                <p className="mb-2 mt-10 text-5xl font-light">
+                  {employee.jobTitle}
+                </p>
                 <div className="mb-8">
                   <a
                     href={`mailto:${employee.workEmail}`}
-                    className="text-3xl font-light"
+                    className="text-3xl font-light text-neutral-400"
                   >
                     {employee.workEmail}
                   </a>
@@ -138,26 +140,34 @@ export default function EmployeesEmployeePage({
               </p>
             </div>
 
-            <div className="relative flex gap-10 pt-8">
+            <div className="relative grid gap-10  pt-8">
+              {/* Horizontal Rule */}
               <div className="border-6  absolute -top-px h-px w-[calc(100%-568px)] border-black bg-neutral-700" />
-              <div className="grid w-1/3 gap-10">
+
+              {/* Manager */}
+              <div className="grid w-full grid-cols-6 gap-10">
                 {reportsDirectlyTo && (
-                  <div className="">
-                    <h5 className="mb-2.5 w-52 shrink-0">Manager</h5>
+                  <div className="col-span-1">
+                    <h5 className="mb-3 font-bold uppercase text-neutral-500">
+                      Manager
+                    </h5>
                     <div className="">
-                      <EmployeeThumbnail employee={reportsDirectlyTo} />
+                      <Thumbnail employee={reportsDirectlyTo} />
                     </div>
                   </div>
                 )}
 
+                {/* Direct reports */}
                 {directReports.length > 0 && (
-                  <div className="">
-                    <h5 className="mb-2.5 w-52 shrink-0">Direct reports</h5>
-                    <ul className="flex flex-col gap-3">
+                  <div className="col-span-5">
+                    <h5 className="mb-3 font-bold uppercase text-neutral-500">
+                      Direct reports
+                    </h5>
+                    <ul className="grid w-full grid-cols-5 gap-10">
                       {directReports.map((d) => {
                         return (
                           <li className="" key={d.id}>
-                            <EmployeeThumbnail employee={d} />
+                            <Thumbnail employee={d} />
                           </li>
                         );
                       })}
@@ -166,18 +176,15 @@ export default function EmployeesEmployeePage({
                 )}
               </div>
 
+              {/* Salary & personal info */}
               {isViewingSelf && (
-                <>
-                  <div className="w-1/3">
-                    <EmployeeSalary salary={employee.annualSalary} />
-                  </div>
-                  <div className="w-1/3">
-                    <EmployeesEmployeePersonalInformation
-                      employee={employee}
-                      onSave={setEmployee}
-                    />
-                  </div>
-                </>
+                <div className="grid gap-10">
+                  <PersonalInformation
+                    employee={employee}
+                    onSave={setEmployee}
+                  />
+                  <Salary salary={employee.annualSalary} />
+                </div>
               )}
             </div>
           </>

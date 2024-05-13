@@ -22,6 +22,10 @@ h1 {
   @apply mb-6 text-[8rem] font-black leading-none tracking-tight;
 }
 
+input {
+  @apply h-9 px-4;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
