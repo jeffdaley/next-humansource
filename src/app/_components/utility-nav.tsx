@@ -13,7 +13,7 @@ export default function UtilityNav(args: UtilityNavArgs) {
 
   return (
     <div
-      className={`sticky top-0 z-10 flex w-full items-center justify-between px-8 py-5 ${
+      className={`sticky top-0 z-30 flex w-full items-center justify-between px-8 py-5 ${
         args.didScroll && "bg-black/95"
       }`}
     >

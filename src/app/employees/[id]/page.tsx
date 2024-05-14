@@ -2,6 +2,7 @@
 
 import Action from "@/app/_components/action";
 import Avatar from "@/app/_components/avatar";
+import EditPhotoMenu from "@/app/_components/employees/employee/edit-photo-menu";
 import PersonalEmail from "@/app/_components/employees/employee/personal-email";
 import PersonalInformation from "@/app/_components/employees/employee/personal-information";
 import Phone from "@/app/_components/employees/employee/phone";
@@ -157,16 +158,11 @@ export default function EmployeesEmployeePage({
                 className="h-full w-full rounded-none"
               />
 
-              <div className="absolute bottom-0 right-8 z-10 flex translate-y-1/2 gap-2">
-                {isViewingSelf && (
-                  <Action className="pill flex  h-12 items-center gap-2 bg-white px-8 text-black hover:bg-neutral-100">
-                    <EditIcon />
-                    Edit photo <span className="ml-1">▾</span>
-                  </Action>
-                )}
+              <div className="absolute bottom-0 right-8 z-20 flex translate-y-1/2 gap-2">
+                {isViewingSelf && <EditPhotoMenu />}
               </div>
             </div>
-            <div className="relative flex min-h-[504px]  flex-col justify-between ">
+            <div className="relative z-10 flex min-h-[504px]  flex-col justify-between ">
               <div className="mb-16">
                 <Headline>
                   {/* TODO: show a lock icon if the user is viewing themselves with a tooltip instructing them to contact HR to change it. We probably want to wrap the last name in a relatively positioned span with an interactive element positioned absolutely  */}
