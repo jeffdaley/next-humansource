@@ -34,10 +34,20 @@ input {
   .pill {
     @apply rounded-l-full rounded-r-full;
   }
+
+  .big-text-light,
+  .big-input {
+    @apply text-5xl font-light;
+  }
 }
 
 .filter-button {
-  @apply flex h-12 items-center border-2 border-white/20 px-6 text-white;
+  @apply relative flex h-9 items-center  px-8 text-sm font-bold uppercase text-white;
+
+  &::before {
+    content: "";
+    @apply absolute left-0 top-0 -z-10 h-full w-full -skew-x-0 border border-neutral-700;
+  }
 
   &.sales {
     @apply text-yellow-500;
@@ -52,18 +62,22 @@ input {
   }
 
   &.active {
-    @apply border-transparent bg-white text-black;
+    @apply text-black;
 
-    &.sales {
+    &::before {
+      @apply border-transparent bg-white;
+    }
+
+    &.sales::before {
       @apply bg-yellow-500;
     }
 
-    &.engineering {
-      @apply bg-lime-500 text-black;
+    &.engineering::before {
+      @apply bg-lime-500;
     }
 
-    &.marketing {
-      @apply bg-pink-500 text-black;
+    &.marketing::before {
+      @apply bg-pink-500;
     }
   }
 }

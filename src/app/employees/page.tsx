@@ -40,7 +40,7 @@ export default function EmployeesPage({
       <Headline>Employees</Headline>
       <div className="flex w-full justify-between">
         {/* Filters */}
-        <ul className="mb-12 flex gap-1">
+        <ul className="mb-12 flex">
           {DEPARTMENTS.map((department) => (
             <li key={department.id}>
               <Link

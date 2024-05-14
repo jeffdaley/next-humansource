@@ -55,7 +55,7 @@ export default function Salary(args: SalaryComponentArgs) {
           {isShown ? <HideIcon /> : <ShowIcon />}
         </Action>
       </div>
-      <p className={`text-5xl font-light ${!isShown && "text-neutral-500"}`}>
+      <p className={`big-text-light ${!isShown && "text-neutral-500"}`}>
         {formattedSalary}
         {isShown && (
           <span className="ml-1 text-sm text-neutral-500">per year</span>

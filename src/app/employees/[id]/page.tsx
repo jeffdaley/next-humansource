@@ -39,6 +39,21 @@ export interface Employee {
   directReports?: string[];
 }
 
+export function EditIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="text-neutral-500"
+    >
+      <path d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z"></path>
+    </svg>
+  );
+}
+
 export default function EmployeesEmployeePage({
   params,
 }: {
@@ -105,6 +120,20 @@ export default function EmployeesEmployeePage({
       </svg>
     );
   }
+  function OrgChartIcon() {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="text-neutral-500"
+      >
+        <path d="M20 13.01h-7V10h1c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v4c0 1.103.897 2 2 2h1v3.01H4V18H3v4h4v-4H6v-2.99h5V18h-1v4h4v-4h-1v-2.99h5V18h-1v4h4v-4h-1v-4.99zM10 8V4h4l.002 4H10z"></path>
+      </svg>
+    );
+  }
 
   // TODO: Design "not found" state
   if (!employee) {
@@ -128,13 +157,14 @@ export default function EmployeesEmployeePage({
                 className="h-full w-full rounded-none"
               />
 
-              {isViewingSelf && (
-                <div className="absolute bottom-0 right-8 translate-y-1/2">
-                  <Action className="pill  h-12   bg-white px-8 text-black">
+              <div className="absolute bottom-0 right-8 z-10 flex translate-y-1/2 gap-2">
+                {isViewingSelf && (
+                  <Action className="pill flex  h-12 items-center gap-2 bg-white px-8 text-black hover:bg-neutral-100">
+                    <EditIcon />
                     Edit photo <span className="ml-1">▾</span>
                   </Action>
-                </div>
-              )}
+                )}
+              </div>
             </div>
             <div className="relative flex min-h-[504px]  flex-col justify-between ">
               <div className="mb-16">
@@ -142,9 +172,7 @@ export default function EmployeesEmployeePage({
                   {/* TODO: show a lock icon if the user is viewing themselves with a tooltip instructing them to contact HR to change it. We probably want to wrap the last name in a relatively positioned span with an interactive element positioned absolutely  */}
                   <span className="pr-80">{employee.name}</span>
                 </Headline>
-                <p className="mb-2 mt-10 text-5xl font-light">
-                  {employee.jobTitle}
-                </p>
+                <p className="big-text-light mb-2 mt-10">{employee.jobTitle}</p>
                 <div className="mb-8">
                   <a
                     href={`mailto:${employee.workEmail}`}

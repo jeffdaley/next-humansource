@@ -1,12 +1,26 @@
 "use client";
 
-import { Employee } from "@/app/employees/[id]/page";
+import { EditIcon, Employee } from "@/app/employees/[id]/page";
 import React, { useState } from "react";
 import Action from "../../action";
 
 interface PersonalInformationArgs {
   employee: Employee;
   onSave: (employee: Employee) => void;
+}
+
+export function CheckIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+    >
+      <path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path>
+    </svg>
+  );
 }
 
 export default function PersonalInformation(args: PersonalInformationArgs) {
@@ -23,26 +37,13 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
   const [isEditing, setIsEditing] = useState(false);
 
   const resetLocalState = () => {
+    setPersonalEmail(null);
+    setPhone(null);
     setStreet(null);
     setCity(null);
     setState(null);
     setZipCode(null);
   };
-
-  function EditIcon() {
-    return (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-      >
-        <path d="m18.988 2.012 3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287-3-3L8 13z"></path>
-        <path d="M19 19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2V19z"></path>
-      </svg>
-    );
-  }
 
   const onSave = (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
@@ -74,6 +75,7 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
     isEditing?: boolean;
     for?: string;
   }
+
   function Label(args: LabelArgs) {
     return (
       <div className="font-bold uppercase text-neutral-500">
@@ -99,7 +101,7 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
                   isEditing={true}
                 />
                 <input
-                  className=" h-16 w-full text-5xl font-light"
+                  className=" big-input h-16 w-full"
                   type="email"
                   value={newPersonalEmail ?? personalEmail}
                   onChange={(e) => {
@@ -110,7 +112,7 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
               <div>
                 <Label for="phone" label="Phone" isEditing={true} />
                 <input
-                  className=" h-16 w-full text-5xl font-light"
+                  className=" big-input h-16 w-full"
                   type="email"
                   value={newPhone ?? phone}
                   onChange={(e) => {
@@ -125,7 +127,7 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
                   <div className="absolute -bottom-px z-10 h-px w-full bg-black" />
                   <input
                     placeholder="Street"
-                    className="h-16 w-full text-5xl leading-none focus:z-10"
+                    className="big-input h-16 w-full leading-none focus:z-10"
                     type="text"
                     value={newStreet ?? street}
                     onChange={(e) => {
@@ -136,7 +138,7 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
                 <div className="flex gap-px">
                   <input
                     placeholder="City"
-                    className="inline-flex h-16 w-full text-5xl leading-none focus:z-10"
+                    className="big-input inline-flex h-16 w-full font-light leading-none focus:z-10"
                     type="text"
                     value={newCity ?? city}
                     onChange={(e) => {
@@ -147,7 +149,7 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
                   {/* TODO: dropdown */}
                   <input
                     placeholder="State"
-                    className="h-16 w-80 shrink-0 pl-4 text-5xl leading-none focus:z-10"
+                    className="big-input h-16 w-80 shrink-0 pl-4 font-light leading-none focus:z-10"
                     type="text"
                     value={newState ?? state}
                     onChange={(e) => {
@@ -157,7 +159,7 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
                 </div>
                 <input
                   placeholder="Zip code"
-                  className="h-16 w-80 border-t border-t-black text-5xl leading-none"
+                  className="big-input h-16 w-80 border-t border-t-black font-light leading-none"
                   type="text"
                   value={newZipCode ?? zipCode}
                   onChange={(e) => {
@@ -171,8 +173,11 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
                 onClick={() => {
                   isEditing ? onSave() : setIsEditing(true);
                 }}
-                className="pill h-12 bg-white px-8 text-black"
+                className="pill flex h-12 items-center gap-2 bg-white px-8 text-black hover:bg-neutral-100"
               >
+                <div className="-ml-1.5">
+                  <CheckIcon />
+                </div>
                 Save changes
               </Action>
               <Action
@@ -189,20 +194,18 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
           <div className="mb-8 grid gap-10">
             <div>
               <Label label="Personal email" />
-              <p className="flex h-16 items-center text-5xl font-light">
+              <p className="big-text-light flex h-16 items-center">
                 {personalEmail}
               </p>
             </div>
             <div>
               <Label label="Phone" />
-              <p className="flex h-16 items-center text-5xl font-light">
-                {phone}
-              </p>
+              <p className="big-text-light flex h-16 items-center">{phone}</p>
             </div>
             <div>
               <Label label="Address" />
               <div className="grid gap-4">
-                <div className="flex flex-col text-5xl leading-[64px]">
+                <div className="big-text-light flex flex-col !leading-[64px]">
                   <p>{street}</p>
                   <p>
                     {city}, {state}
@@ -214,11 +217,11 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
           </div>
           <Action
             onClick={() => setIsEditing(true)}
-            className="pill flex h-12  items-center gap-2   bg-white px-8 text-black"
+            className="pill flex h-12  items-center gap-2 bg-white   px-8 text-black hover:bg-neutral-100"
           >
-            {/* <div className="-ml-1">
+            <div className="-ml-1.5">
               <EditIcon />
-            </div> */}
+            </div>
             Update contact information
           </Action>
         </>
