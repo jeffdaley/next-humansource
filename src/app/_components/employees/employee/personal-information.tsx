@@ -9,6 +9,7 @@ interface PersonalInformationArgs {
   onSave: (employee: Employee) => void;
 }
 
+// Via Boxicons
 export function CheckIcon() {
   return (
     <svg
@@ -48,7 +49,7 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
   const onSave = (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
 
-    // TODO: Validate
+    // NOTE: Normally we'd validate here
 
     args.onSave({
       ...args.employee,
@@ -61,7 +62,6 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
     });
 
     setIsEditing(false);
-
     resetLocalState();
   };
 
@@ -121,7 +121,7 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
                 />
               </div>
               <div>
-                {/* TODO: this is more of a Legend */}
+                {/* Note: The semantics/accessibility work is unfinished */}
                 <Label for="street" label="Address" isEditing={true} />
                 <div className="relative">
                   <div className="absolute -bottom-px z-10 h-0.5 w-full bg-black" />
@@ -146,7 +146,7 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
                     }}
                   />
 
-                  {/* TODO: dropdown */}
+                  {/* NOTE: Normally this would be a dropdown */}
                   <input
                     placeholder="State"
                     className="big-input mr-6 h-16 w-80 shrink-0 pl-4 font-light leading-none focus:z-10"
@@ -226,8 +226,6 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
           </Action>
         </>
       )}
-
-      {/* A note about changing your name? */}
     </div>
   );
 }

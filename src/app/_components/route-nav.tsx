@@ -9,6 +9,7 @@ export type NavLink = {
   icon: JSX.Element;
 };
 
+// Via Boxicons
 function HomeIcon() {
   return (
     <svg
@@ -23,6 +24,7 @@ function HomeIcon() {
   );
 }
 
+// Via Boxicons
 function PeopleIcon() {
   return (
     <svg
@@ -38,6 +40,7 @@ function PeopleIcon() {
   );
 }
 
+// Via Boxicons
 function CompanyIcon() {
   return (
     <svg
@@ -53,6 +56,7 @@ function CompanyIcon() {
   );
 }
 
+// Via Boxicons
 function BenefitsIcon() {
   return (
     <svg

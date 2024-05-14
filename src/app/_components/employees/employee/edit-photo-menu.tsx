@@ -4,8 +4,6 @@ import { EditIcon } from "@/app/employees/[id]/page";
 import React, { useState } from "react";
 import Action from "../../action";
 
-interface EditPhotoMenuArgs {}
-
 function ReplaceImageIcon() {
   return (
     <svg
@@ -37,10 +35,9 @@ function RemoveIcon() {
   );
 }
 
-export default function EditPhotoMenu(args: EditPhotoMenuArgs) {
+export default function EditPhotoMenu() {
   const [isShown, setIsShown] = useState(false);
 
-  // NOTE: Normally I'd position this with FloatingUI and have some kind of click-away function to close it
   return (
     <div className="relative">
       <Action

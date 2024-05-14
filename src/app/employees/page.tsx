@@ -16,7 +16,6 @@ export default function EmployeesPage({
     sort?: SortOrder;
   };
 }) {
-  // FIXME: Don't ever want the "All" param showing in the URL
   const activeFilter = searchParams.department || DepartmentName.All;
 
   const employees =
@@ -38,6 +37,9 @@ export default function EmployeesPage({
   return (
     <div className="relative px-12 pt-12">
       <Headline>Employees</Headline>
+      <p className="mb-5">
+        This is an extremely unfinished sketch exploring queryParams.
+      </p>
       <div className="flex w-full justify-between">
         {/* Filters */}
         <ul className="mb-12 flex">

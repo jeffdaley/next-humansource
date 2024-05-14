@@ -14,7 +14,7 @@ export default function Salary(args: SalaryComponentArgs) {
     ? `$${args.salary.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
     : "⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆";
 
-  // Icons via Boxicons
+  // Via Boxicons
   function ShowIcon() {
     return (
       <svg

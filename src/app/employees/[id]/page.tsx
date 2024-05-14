@@ -1,20 +1,16 @@
 "use client";
 
-import Action from "@/app/_components/action";
 import Avatar from "@/app/_components/avatar";
 import EditPhotoMenu from "@/app/_components/employees/employee/edit-photo-menu";
-import PersonalEmail from "@/app/_components/employees/employee/personal-email";
 import PersonalInformation from "@/app/_components/employees/employee/personal-information";
-import Phone from "@/app/_components/employees/employee/phone";
 import Salary from "@/app/_components/employees/employee/salary";
 import Thumbnail from "@/app/_components/employees/employee/thumbnail";
 import { Headline } from "@/app/_components/headline";
 import { parseDate, timeAgo } from "@/app/_utils/date";
 import { EMPLOYEES, USER_ID } from "@/app/lib/data";
 import { DepartmentName } from "@/app/types/employees";
-import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export interface Employee {
   id: string;
@@ -26,15 +22,13 @@ export interface Employee {
     city: string;
     state: string;
     zipCode: string;
-  }; // unused
+  };
   jobTitle: string;
   phone: string;
   annualSalary: number;
   startDate: number;
   imageURL?: string;
-  birthday?: string; // unused
   department: DepartmentName;
-  pronunciation?: string; // unused
   pronouns?: string;
   reportsDirectlyTo?: string;
   directReports?: string[];
@@ -90,6 +84,7 @@ export default function EmployeesEmployeePage({
     .toLowerCase()
     .replace(/ /g, "-");
 
+  // Via Boxicons
   function JoinDateIcon() {
     return (
       <svg
@@ -106,6 +101,7 @@ export default function EmployeesEmployeePage({
     );
   }
 
+  // Via Boxicons
   function LocationIcon() {
     return (
       <svg
@@ -121,22 +117,8 @@ export default function EmployeesEmployeePage({
       </svg>
     );
   }
-  function OrgChartIcon() {
-    return (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        className="text-neutral-500"
-      >
-        <path d="M20 13.01h-7V10h1c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v4c0 1.103.897 2 2 2h1v3.01H4V18H3v4h4v-4H6v-2.99h5V18h-1v4h4v-4h-1v-2.99h5V18h-1v4h4v-4h-1v-4.99zM10 8V4h4l.002 4H10z"></path>
-      </svg>
-    );
-  }
 
-  // TODO: Design "not found" state
+  // NOTE: This is a placeholder for a more robust solution
   if (!employee) {
     return (
       <div>
@@ -165,7 +147,6 @@ export default function EmployeesEmployeePage({
             <div className="relative z-10 flex min-h-[504px]  flex-col justify-between ">
               <div className="mb-16">
                 <Headline>
-                  {/* TODO: show a lock icon if the user is viewing themselves with a tooltip instructing them to contact HR to change it. We probably want to wrap the last name in a relatively positioned span with an interactive element positioned absolutely  */}
                   <span className="pr-80">{employee.name}</span>
                 </Headline>
                 <p className="big-text-light mb-2 mt-10">{employee.jobTitle}</p>

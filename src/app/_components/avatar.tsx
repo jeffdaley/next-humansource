@@ -21,7 +21,7 @@ export default function Avatar({
 
     return employee.imageURL ? (
       <Image
-        // FIXME: Reference the `baseURL` directly instead of fragile `../`
+        // Note: Normally we'd reference a `baseURL` variable
         src={`/images/${employee.imageURL}`}
         alt={employee.name}
         width="1200"
@@ -33,10 +33,7 @@ export default function Avatar({
   };
 
   return (
-    <div
-      className={`${!employee?.imageURL && "bg-red-200"} ${rest.className}`}
-      // FIXME: need a better way of concatenating classNames
-    >
+    <div className={`${!employee?.imageURL && "bg-red-200"} ${rest.className}`}>
       <ImageOrLetter />
     </div>
   );

@@ -17,7 +17,7 @@ export default function EmployeeThumbnail(args: EmployeeThumbnailArgs) {
         className="h-12 w-12 shrink-0 overflow-hidden rounded-full"
       />
       <div className="grid pt-1">
-        {/* TODO: Truncate/handle long names */}
+        {/* NOTE: Normally we'd truncate these values */}
         <h5 className="font-semibold leading-tight ">{employee.name}</h5>
         <p className="truncate leading-tight text-neutral-500">
           {employee.jobTitle}
