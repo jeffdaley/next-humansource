@@ -8,7 +8,7 @@ export default function Home() {
   redirect(`employees/${USER_ID}`);
 
   return (
-    <div className="px-8 pt-12">
+    <div className="px-12 pt-12">
       <Headline>Home</Headline>
     </div>
   );

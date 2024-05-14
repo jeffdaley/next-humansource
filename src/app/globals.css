@@ -23,7 +23,7 @@ h1 {
 }
 
 input {
-  @apply bg-neutral-800 leading-none placeholder-neutral-500;
+  @apply rounded-l-full rounded-r-full bg-neutral-800 leading-none placeholder-neutral-500;
 }
 
 @layer utilities {
@@ -38,6 +38,10 @@ input {
   .big-text-light,
   .big-input {
     @apply text-5xl font-light;
+  }
+
+  .big-input {
+    @apply px-6;
   }
 }
 

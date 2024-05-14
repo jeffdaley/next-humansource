@@ -13,7 +13,7 @@ export default function UtilityNav(args: UtilityNavArgs) {
 
   return (
     <div
-      className={`sticky top-0 z-30 flex w-full items-center justify-between px-8 py-5 ${
+      className={`sticky top-0 z-30 flex w-full items-center justify-between px-12 py-5 ${
         args.didScroll && "bg-black/95"
       }`}
     >
@@ -27,7 +27,7 @@ export default function UtilityNav(args: UtilityNavArgs) {
           <input
             type="search"
             placeholder="Find people, benefits, policies..."
-            className="pill h-10  w-full bg-neutral-800 pl-11 pr-3"
+            className="h-10  w-full bg-neutral-800 pl-11 pr-3"
           />
           {/* Search icon */}
           <div className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2">

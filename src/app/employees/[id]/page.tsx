@@ -147,7 +147,7 @@ export default function EmployeesEmployeePage({
 
   return (
     <>
-      <div className="px-8 pb-8 pt-12">
+      <div className="px-12 pb-8 pt-12">
         <div className="relative">
           <>
             <div className="absolute -right-8 -top-24 h-[600px] w-[600px]">

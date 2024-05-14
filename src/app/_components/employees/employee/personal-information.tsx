@@ -101,7 +101,7 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
                   isEditing={true}
                 />
                 <input
-                  className=" big-input h-16 w-full"
+                  className=" big-input -ml-6 h-16 w-full"
                   type="email"
                   value={newPersonalEmail ?? personalEmail}
                   onChange={(e) => {
@@ -112,7 +112,7 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
               <div>
                 <Label for="phone" label="Phone" isEditing={true} />
                 <input
-                  className=" big-input h-16 w-full"
+                  className=" big-input -ml-6 h-16 w-full"
                   type="email"
                   value={newPhone ?? phone}
                   onChange={(e) => {
@@ -124,10 +124,10 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
                 {/* TODO: this is more of a Legend */}
                 <Label for="street" label="Address" isEditing={true} />
                 <div className="relative">
-                  <div className="absolute -bottom-px z-10 h-px w-full bg-black" />
+                  <div className="absolute -bottom-px z-10 h-0.5 w-full bg-black" />
                   <input
                     placeholder="Street"
-                    className="big-input h-16 w-full leading-none focus:z-10"
+                    className="big-input  relative -ml-6 h-16 w-full leading-none focus:z-10"
                     type="text"
                     value={newStreet ?? street}
                     onChange={(e) => {
@@ -135,10 +135,10 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
                     }}
                   />
                 </div>
-                <div className="flex gap-px">
+                <div className=" flex gap-1">
                   <input
                     placeholder="City"
-                    className="big-input inline-flex h-16 w-full font-light leading-none focus:z-10"
+                    className="big-input -ml-6 inline-flex h-16 w-full font-light leading-none focus:z-10"
                     type="text"
                     value={newCity ?? city}
                     onChange={(e) => {
@@ -149,7 +149,7 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
                   {/* TODO: dropdown */}
                   <input
                     placeholder="State"
-                    className="big-input h-16 w-80 shrink-0 pl-4 font-light leading-none focus:z-10"
+                    className="big-input mr-6 h-16 w-80 shrink-0 pl-4 font-light leading-none focus:z-10"
                     type="text"
                     value={newState ?? state}
                     onChange={(e) => {
@@ -159,7 +159,7 @@ export default function PersonalInformation(args: PersonalInformationArgs) {
                 </div>
                 <input
                   placeholder="Zip code"
-                  className="big-input h-16 w-80 border-t border-t-black font-light leading-none"
+                  className="big-input -ml-6 h-16 w-80 border-t-2 border-t-black font-light leading-none"
                   type="text"
                   value={newZipCode ?? zipCode}
                   onChange={(e) => {

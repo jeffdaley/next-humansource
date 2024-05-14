@@ -36,7 +36,7 @@ export default function EmployeesPage({
   });
 
   return (
-    <div className="relative px-8 pt-12">
+    <div className="relative px-12 pt-12">
       <Headline>Employees</Headline>
       <div className="flex w-full justify-between">
         {/* Filters */}
